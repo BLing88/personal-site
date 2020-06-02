@@ -9,6 +9,7 @@ module.exports = {
     siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
   },
   plugins: [
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
