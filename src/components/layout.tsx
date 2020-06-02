@@ -3,7 +3,13 @@ import { Link } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
 
-const Layout = ({ location, title, children }) => {
+interface LayoutProps {
+  location: Location
+  title: string
+  children?: any
+}
+
+const Layout = ({ location, title, children }: LayoutProps) => {
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 

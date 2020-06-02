@@ -6,7 +6,20 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 
-const BlogPostTemplate = ({ data, pageContext, location }) => {
+interface BlogPostProps {
+  data: {
+    markdownRemark: any
+    site: {
+      siteMetadata: {
+        title: string
+      }
+    }
+  }
+  pageContext: any
+  location: Location
+}
+
+const BlogPostTemplate = ({ data, pageContext, location }: BlogPostProps) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
