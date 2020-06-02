@@ -5,10 +5,11 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
-  const result = await graphql(
+  const blogResult = await graphql(
     `
       {
         allMarkdownRemark(
+          filter: { fields: { content_type: { eq: "blog" } } }
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
         ) {
@@ -27,16 +28,17 @@ exports.createPages = async ({ graphql, actions }) => {
     `
   )
 
-  if (result.errors) {
-    throw result.errors
+  if (blogResult.errors) {
+    throw blogResult.errors
   }
 
   // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges
+  const blogPosts = blogResult.data.allMarkdownRemark.edges
 
-  posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node
-    const next = index === 0 ? null : posts[index - 1].node
+  blogPosts.forEach((post, index) => {
+    const previous =
+      index === blogPosts.length - 1 ? null : blogPosts[index + 1].node
+    const next = index === 0 ? null : blogPosts[index - 1].node
 
     createPage({
       path: post.node.fields.slug,
@@ -45,6 +47,40 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: post.node.fields.slug,
         previous,
         next,
+      },
+    })
+  })
+
+  const projectTemplate = path.resolve("./src/templates/project.tsx")
+  const projectsResult = await graphql(
+    `
+      {
+        allMarkdownRemark(
+          filter: { fields: { content_type: { eq: "project" } } }
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                github_url
+              }
+            }
+          }
+        }
+      }
+    `
+  )
+  const projects = projectsResult.data.allMarkdownRemark.edges
+
+  projects.forEach(project => {
+    createPage({
+      path: project.node.fields.slug,
+      component: projectTemplate,
+      context: {
+        slug: project.node.fields.slug,
       },
     })
   })
@@ -60,5 +96,21 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value,
     })
+    if (
+      new RegExp(`${__dirname}/content/projects`).test(node.fileAbsolutePath)
+    ) {
+      createNodeField({
+        name: `content_type`,
+        node,
+        value: "project",
+      })
+    }
+    if (new RegExp(`${__dirname}/content/blog`).test(node.fileAbsolutePath)) {
+      createNodeField({
+        name: `content_type`,
+        node,
+        value: "blog",
+      })
+    }
   }
 }
