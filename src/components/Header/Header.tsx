@@ -14,7 +14,10 @@ const MenuStyle = css`
   }
 `
 
-const MenuIcon = ({ clickHandler }) => (
+interface MenuIconProps {
+  clickHandler: () => void
+}
+const MenuIcon = ({ clickHandler }: MenuIconProps) => (
   <button
     onClick={e => {
       e.preventDefault()
