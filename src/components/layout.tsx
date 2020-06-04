@@ -1,67 +1,27 @@
 import React, { ReactChildren, ReactNode } from "react"
-import { Link } from "gatsby"
 import { Header } from "../components/Header"
 
-import { rhythm, scale } from "../utils/typography"
+import { rhythm } from "../utils/typography"
+import { css, SerializedStyles } from "@emotion/core"
+import { mediaQueries } from "../utils/media-queries"
 
 interface LayoutProps {
   title: string
   children?: ReactNode
+  style?: SerializedStyles
 }
 
-const Layout = ({ title, children }: LayoutProps) => {
-  // const rootPath = `${__PATH_PREFIX__}/`
-  // let header
+export const defaultStyle = css`
+  padding: ${rhythm(1.5)} calc(50vw - ${rhythm(40)} / 2);
 
-  // if (location.pathname === rootPath) {
-  //   header = (
-  //     <h1
-  //       style={{
-  //         ...scale(1.5),
-  //         marginBottom: rhythm(1.5),
-  //         marginTop: 0,
-  //       }}
-  //     >
-  //       <Link
-  //         style={{
-  //           boxShadow: `none`,
-  //           color: `inherit`,
-  //         }}
-  //         to={`/`}
-  //       >
-  //         {title}
-  //       </Link>
-  //     </h1>
-  //   )
-  // } else {
-  //   header = (
-  //     <h3
-  //       style={{
-  //         fontFamily: `Montserrat, sans-serif`,
-  //         marginTop: 0,
-  //       }}
-  //     >
-  //       <Link
-  //         style={{
-  //           boxShadow: `none`,
-  //           color: `inherit`,
-  //         }}
-  //         to={`/`}
-  //       >
-  //         {title}
-  //       </Link>
-  //     </h3>
-  //   )
-  // }
+  ${mediaQueries[0]} {
+    padding: ${rhythm(1.5)};
+  }
+`
+
+const Layout = ({ title, children, style }: LayoutProps) => {
   return (
-    <div
-      style={{
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        maxWidth: rhythm(24),
-        padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-      }}
-    >
+    <div css={style ? style : defaultStyle}>
       <Header title={title} />
       <main>{children}</main>
       <footer>

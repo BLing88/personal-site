@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import { css } from "@emotion/core"
-
-const breakpoints = [450]
-const mediaQueries = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
+import { breakpoints, mediaQueries } from "../../utils/media-queries"
 
 const MenuStyle = css`
   position: relative;
@@ -41,30 +39,35 @@ const headerStyles = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 `
 
 const headerListStyles = css`
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 0;
   ul {
     display: flex;
+    justify-content: space-between;
     list-style: none;
     margin: 0;
+    align-items: center;
+    width: 100%;
+  }
+  li {
+    margin-bottom: 0;
   }
   ${mediaQueries[0]} {
     flex-direction: column;
     ul {
+      width: 100%;
+      background-color: white;
       flex-direction: column;
-      top: 5.5rem;
+      top: 110%;
       position: absolute;
       list-style: none;
-    }
-
-    li {
-      color: green;
     }
   }
 `
@@ -78,9 +81,9 @@ const ListLink = ({ children, to }: ListLinkProps) => {
   return (
     <li>
       <Link
-        css={css`
-          margin-right: 1rem;
-        `}
+        // css={css`
+        //   margin-right: 1rem;
+        // `}
         to={to}
       >
         {children}
@@ -106,16 +109,19 @@ export const Header = ({ title }: HeaderProps) => {
 
   return (
     <header css={headerStyles}>
-      <Link
-        style={{
-          boxShadow: `none`,
-          color: `inherit`,
-          fontSize: `24px`,
-        }}
-        to={`/`}
-      >
-        {title}
-      </Link>
+      <h1 style={{ margin: 0 }}>
+        <Link
+          style={{
+            boxShadow: `none`,
+            textDecoration: `none`,
+            color: `inherit`,
+            // fontSize: `24px`,
+          }}
+          to={`/`}
+        >
+          {title}
+        </Link>
+      </h1>
 
       <div css={headerListStyles}>
         <MenuIcon clickHandler={menuClickHandler} />

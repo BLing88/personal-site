@@ -1,11 +1,13 @@
 // Gatsby supports TypeScript natively!
 import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
+import { css } from "@emotion/core"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
+import Layout, { defaultStyle } from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
+import { mediaQueries } from "../utils/media-queries"
 
 type Data = {
   site: {
@@ -30,69 +32,40 @@ type Data = {
   }
 }
 
-const BlogIndex = ({ data }: PageProps<Data>) => {
+const homePageStyles = css`
+  ${defaultStyle};
+  main,
+  footer {
+    max-width: ${rhythm(32)};
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ${mediaQueries[0]} {
+    padding: ${rhythm(1.5)} ${rhythm(1 + 3 / 4)};
+  }
+`
+
+const HomePage = ({ data }: PageProps<Data>) => {
   const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
 
   return (
-    <Layout title={siteTitle}>
-      <SEO title="All posts" />
-      <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        )
-      })}
+    <Layout title={siteTitle} style={homePageStyles}>
+      <SEO title={siteTitle} lang="en" />
+      <div>
+        <Bio />
+      </div>
     </Layout>
   )
 }
 
-export default BlogIndex
+export default HomePage
 
 export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
         title
-      }
-    }
-    allMarkdownRemark(
-      filter: { fields: { content_type: { eq: "blog" } } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-          }
-        }
       }
     }
   }
