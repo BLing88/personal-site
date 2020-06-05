@@ -17,8 +17,8 @@ export const baseBackgroundColor = "#333333"
 export const baseAccentColor = "#B88BDA"
 
 const typography = new Typography({
-  baseFontSize: "16px",
-  baseLineHeight: 1.35,
+  baseFontSize: "17px",
+  baseLineHeight: 1.4,
   headerFontFamily: ["Source Sans Pro", "Fira Sans", "sans-serif"],
   bodyFontFamily: ["Source Sans Pro", "Fira Sans", "sans-serif"],
   overrideStyles: () => {
@@ -41,6 +41,9 @@ const typography = new Typography({
       },
       body: {
         color: baseTextColor,
+      },
+      hr: {
+        backgroundColor: baseAccentColor,
       },
     }
   },
