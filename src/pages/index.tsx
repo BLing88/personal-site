@@ -3,7 +3,6 @@ import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
 
-import Bio from "../components/bio"
 import Layout, { defaultStyle } from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
@@ -36,13 +35,30 @@ const homePageStyles = css`
   ${defaultStyle};
   main,
   footer {
-    max-width: ${rhythm(32)};
+    max-width: ${rhythm(25)};
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+
+  main {
+    font-size: 1.25rem;
+
+    p {
+      margin-bottom: 2rem;
+    }
+  }
+
+  footer {
+    visibility: hidden;
   }
 
   ${mediaQueries[0]} {
     padding: ${rhythm(1.5)} ${rhythm(1 + 3 / 4)};
+    main {
+      text-align: left;
+    }
   }
 `
 
@@ -53,7 +69,11 @@ const HomePage = ({ data }: PageProps<Data>) => {
     <Layout title={siteTitle} style={homePageStyles}>
       <SEO title={siteTitle} lang="en" />
       <div>
-        <Bio />
+        {/* <img src={`https://source.unsplash.com/random`} /> */}
+        <p>I&rsquo;m a former physicist turned self&ndash;taught developer.</p>
+        <p>I enjoy learning natural languages.</p>
+        <p>I teach physics and math.</p>
+        <p>I write code.</p>
       </div>
     </Layout>
   )
