@@ -1,10 +1,10 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import { css } from "@emotion/core"
 
 interface BlogPostProps {
   data: {
@@ -19,27 +19,27 @@ interface BlogPostProps {
   location: Location
 }
 
-const BlogPostTemplate = ({ data, pageContext, location }: BlogPostProps) => {
+const blogPostStyle = css`
+  header {
+    padding: 0;
+  }
+`
+
+const BlogPostTemplate = ({ data, pageContext }: BlogPostProps) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout title={siteTitle}>
       <SEO
         title={post.frontmatter.title}
+        lang="en"
         description={post.frontmatter.description || post.excerpt}
       />
-      <article>
+      <article css={blogPostStyle}>
         <header>
-          <h1
-            style={{
-              marginTop: rhythm(1),
-              marginBottom: 0,
-            }}
-          >
-            {post.frontmatter.title}
-          </h1>
+          <h1>{post.frontmatter.title}</h1>
           <p
             style={{
               ...scale(-1 / 5),
@@ -51,11 +51,7 @@ const BlogPostTemplate = ({ data, pageContext, location }: BlogPostProps) => {
           </p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
+        <hr />
         <footer>
           <Bio />
         </footer>

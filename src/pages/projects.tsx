@@ -1,5 +1,5 @@
 import React from "react"
-import Layout from "../components/layout"
+import Layout, { defaultStyle } from "../components/layout"
 import SEO from "../components/seo"
 import { css } from "@emotion/core"
 import { PageProps, Link, graphql } from "gatsby"
@@ -86,10 +86,17 @@ const truncateString = (str: string, len: number) => {
 }
 const maxDescriptionLength = 140
 
+const projectsPageStyle = css`
+  ${defaultStyle};
+`
+
 export default function Projects({ data }: PageProps<ProjectData>) {
   const projects = data.allMarkdownRemark.edges
   return (
-    <Layout title={`Brandon Ling${String.fromCharCode(8217)}s Projects`}>
+    <Layout
+      title={`Brandon Ling${String.fromCharCode(8217)}s Projects`}
+      style={projectsPageStyle}
+    >
       <SEO
         title={`Brandon Ling${String.fromCharCode(8217)}s Projects`}
         lang="en"
@@ -100,14 +107,6 @@ export default function Projects({ data }: PageProps<ProjectData>) {
             <article css={projectCardStyle} key={node.fields.slug}>
               <figure style={{ display: "flex", flexDirection: "column" }}>
                 <Link to={node.fields.slug} style={linkStyle}>
-                  {/* <img
-                    src={
-                      node.frontmatter.image_url[0] === "."
-                        ? require(node.frontmatter.image_url)
-                        : node.frontmatter.image_url
-                    }
-                    style={{ alignSelf: "center", marginBottom: "0.5rem" }}
-                  /> */}
                   <Image
                     fixed={node.frontmatter.image_url.childImageSharp.fixed}
                     alt={node.frontmatter.title}

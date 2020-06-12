@@ -17,7 +17,7 @@ export const baseBackgroundColor = "#333333"
 export const baseAccentColor = "#B88BDA"
 
 const typography = new Typography({
-  baseFontSize: "17px",
+  baseFontSize: "18px",
   baseLineHeight: 1.4,
   headerFontFamily: ["Source Sans Pro", "Fira Sans", "sans-serif"],
   bodyFontFamily: ["Source Sans Pro", "Fira Sans", "sans-serif"],

@@ -4,8 +4,17 @@ body {
   --baseAccentColor: 274, 52%, 70%;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   color: hsl(var(--baseAccentColor));
+}
+
+blockquote {
+  border-left: solid 0.25rem hsl(var(--baseAccentColor));
+  padding-left: 0.75rem;
 }
 
 /**

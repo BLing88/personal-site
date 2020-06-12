@@ -34,15 +34,15 @@ type Data = {
 
 const blogPostPageStyles = css`
   ${defaultStyle};
-  main,
-  footer {
-    max-width: ${rhythm(25)};
-    margin-left: auto;
-    margin-right: auto;
-  }
 
   ${mediaQueries[0]} {
     padding: ${rhythm(1.5)} ${rhythm(1 + 3 / 4)};
+  }
+`
+
+const blogPostStyle = css`
+  header {
+    padding: 0;
   }
 `
 
@@ -58,7 +58,7 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
-            <article key={node.fields.slug}>
+            <article css={blogPostStyle} key={node.fields.slug}>
               <header>
                 <h3
                   style={{

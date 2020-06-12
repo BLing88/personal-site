@@ -5,6 +5,7 @@ import { defaultStyle } from "../components/layout"
 import { rhythm } from "../utils/typography"
 import { mediaQueries } from "../utils/media-queries"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 interface ProjectProps {
   data: {
@@ -26,12 +27,6 @@ interface ProjectProps {
 
 const projectPageStyle = css`
   ${defaultStyle};
-  main,
-  footer {
-    max-width: ${rhythm(32)};
-    margin-left: auto;
-    margin-right: auto;
-  }
 
   main a {
     text-decoration: underline;
@@ -42,11 +37,11 @@ const projectPageStyle = css`
     padding: ${rhythm(1.5)};
   }
 `
-
 const Project = ({ data }: ProjectProps) => {
   const project = data.markdownRemark
   return (
     <Layout title={data.site.siteMetadata.title} style={projectPageStyle}>
+      <SEO title={project.frontmatter.title} lang="en" />
       <h1>{project.frontmatter.title}</h1>
 
       <section dangerouslySetInnerHTML={{ __html: project.html }}></section>

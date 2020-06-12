@@ -1,4 +1,4 @@
-import React, { ReactChildren, ReactNode } from "react"
+import React, { ReactNode } from "react"
 import { Header } from "../components/Header"
 
 import { rhythm } from "../utils/typography"
@@ -12,7 +12,19 @@ interface LayoutProps {
 }
 
 export const defaultStyle = css`
-  padding: ${rhythm(1.5)} calc(50vw - ${rhythm(40)} / 2);
+  header {
+    padding: ${rhythm(1.5)} calc(50vw - ${rhythm(20)});
+  }
+
+  main,
+  footer {
+    max-width: ${rhythm(25)};
+    margin-left: auto;
+    margin-right: auto;
+  }
+  footer {
+    margin-bottom: ${rhythm(1.5)};
+  }
 
   ${mediaQueries[0]} {
     padding: ${rhythm(1.5)};
