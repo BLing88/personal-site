@@ -5,6 +5,10 @@ import { rhythm } from "../utils/typography"
 import { css, SerializedStyles } from "@emotion/core"
 import { mediaQueries } from "../utils/media-queries"
 
+const objectIsEmptyOrUndefined = (obj: object | undefined) => {
+  return obj === undefined || Object.keys(obj).length === 0
+}
+
 interface LayoutProps {
   title: string
   children?: ReactNode
@@ -33,7 +37,7 @@ export const defaultStyle = css`
 
 const Layout = ({ title, children, style }: LayoutProps) => {
   return (
-    <div css={style ? style : defaultStyle}>
+    <div css={!objectIsEmptyOrUndefined(style) ? style : defaultStyle}>
       <Header title={title} />
       <main>{children}</main>
       <footer>
