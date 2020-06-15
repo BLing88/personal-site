@@ -41,8 +41,10 @@ const blogPostPageStyles = css`
 `
 
 const blogPostStyle = css`
+  ${defaultStyle};
   header {
     padding: 0;
+    margin-bottom: 0.25rem;
   }
 `
 
@@ -62,7 +64,7 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
               <header>
                 <h3
                   style={{
-                    marginBottom: rhythm(1 / 4),
+                    marginBottom: rhythm(1 / 5),
                   }}
                 >
                   <Link
