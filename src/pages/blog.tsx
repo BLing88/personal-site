@@ -23,6 +23,7 @@ type Data = {
           title: string
           date: string
           description: string
+          tags: string[] | null
         }
         fields: {
           slug: string
@@ -68,6 +69,8 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
         <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
+          const tags = node.frontmatter.tags
+
           return (
             <article css={blogPostStyle} key={node.fields.slug}>
               <header css={blogPageHeaderStyle}>
@@ -79,7 +82,10 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
                     {title}
                   </Link>
                 </h3>
-                <small>{node.frontmatter.date}</small>
+                <small>
+                  {node.frontmatter.date}
+                  {tags ? <> &bull; {tags.join(", ")}</> : null}
+                </small>
               </header>
               <section>
                 <p
@@ -119,6 +125,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            tags
           }
         }
       }
