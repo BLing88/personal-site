@@ -41,10 +41,19 @@ const blogPostPageStyles = css`
 `
 
 const blogPostStyle = css`
-  ${defaultStyle};
   header {
     padding: 0;
     margin-bottom: 0.25rem;
+  }
+`
+
+const blogPageHeaderStyle = css`
+  h3 {
+    margin-bottom: ${rhythm(1 / 5)};
+  }
+
+  ${mediaQueries[0]} {
+    padding: 0;
   }
 `
 
@@ -61,12 +70,8 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
             <article css={blogPostStyle} key={node.fields.slug}>
-              <header>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 5),
-                  }}
-                >
+              <header css={blogPageHeaderStyle}>
+                <h3>
                   <Link
                     style={{ boxShadow: `none`, color: baseAccentColor }}
                     to={node.fields.slug}

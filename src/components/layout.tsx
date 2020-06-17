@@ -32,6 +32,10 @@ export const defaultStyle = css`
 
   ${mediaQueries[0]} {
     padding: ${rhythm(1.5)};
+
+    header {
+      margin-bottom: 0;
+    }
   }
 `
 
