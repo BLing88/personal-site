@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useLayoutEffect } from "react"
 import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import { breakpoints, mediaQueries } from "../../utils/media-queries"
@@ -102,15 +102,15 @@ interface HeaderProps {
 }
 
 export const Header = ({ title }: HeaderProps) => {
-  const [showDropdownMenu, setShowDropdownMenu] = useState(true)
+  const [showMenuButton, setShowMenuButton] = useState(false)
   const menuClickHandler = () =>
-    setShowDropdownMenu(showDropdownMenu => !showDropdownMenu)
+    setShowMenuButton(showMenuButton => !showMenuButton)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (window && window.innerWidth <= breakpoints[0]) {
-      setShowDropdownMenu(false)
+      setShowMenuButton(true)
     }
-  }, [setShowDropdownMenu, window.innerWidth])
+  }, [setShowMenuButton, window.innerWidth])
 
   return (
     <header css={headerStyles}>
@@ -126,7 +126,7 @@ export const Header = ({ title }: HeaderProps) => {
       </h1>
 
       <MenuIcon clickHandler={menuClickHandler} />
-      {showDropdownMenu ? (
+      {!showMenuButton ? (
         <ul css={linkListStyle}>
           <ListLink to={"/"}>About</ListLink>
           <ListLink to={"/projects/"}>Projects</ListLink>
