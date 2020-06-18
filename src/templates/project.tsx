@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { defaultStyle } from "../components/layout"
-import { rhythm } from "../utils/typography"
+import { rhythm, linkColor } from "../utils/typography"
 import { mediaQueries } from "../utils/media-queries"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -30,7 +30,7 @@ const projectPageStyle = css`
 
   main a {
     text-decoration: underline;
-    color: #ff9492;
+    color: ${linkColor};
   }
 
   ${mediaQueries[0]} {

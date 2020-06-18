@@ -15,6 +15,7 @@ import Typography from "typography"
 export const baseTextColor = "#fdfff5"
 export const baseBackgroundColor = "#333333"
 export const baseAccentColor = "#B88BDA"
+export const linkColor = "#ff9492"
 
 const typography = new Typography({
   baseFontSize: "18px",
@@ -28,10 +29,10 @@ const typography = new Typography({
       },
       a: {
         textDecoration: `none`,
-        color: baseTextColor,
+        color: linkColor,
       },
       "a:visited": {
-        color: baseTextColor,
+        color: linkColor,
       },
       "a:hover": {
         color: baseAccentColor,
