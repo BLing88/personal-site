@@ -2,10 +2,22 @@ import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import { breakpoints, mediaQueries } from "../../utils/media-queries"
+import { linkColor, baseBackgroundColor, rhythm } from "../../utils/typography"
 
 const MenuStyle = css`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   visibility: collapse;
+  background-color: ${baseBackgroundColor};
+  border-radius: 3px;
+  border: solid 1px grey;
+  padding: 0.25rem 0.25rem;
+  box-shadow: 0 0 1px grey;
+  grid-area: menu;
+  align-self: center;
+  max-height: 2rem;
   ${mediaQueries[0]} {
     visibility: visible;
     cursor: pointer;
@@ -29,17 +41,33 @@ const MenuIcon = ({ clickHandler }: MenuIconProps) => (
       width="24"
       height="24"
     >
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" />
+      {/* <path fill="none" d="M0 0h24v24H0z" /> */}
+      <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill={linkColor} />
     </svg>
   </button>
 )
 
+// const headerStyles = css`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin-bottom: 2rem;
+// `
+
 const headerStyles = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "title menu"
+    "links links";
+  gap: 1rem;
+  padding-left: calc(50vw - ${rhythm(20)});
+  padding-right: calc(50vw - ${rhythm(20)});
+  margin-bottom: 1rem;
+  ${mediaQueries[0]} {
+    padding-bottom: 0;
+  }
 `
 
 const headerListStyles = css`
@@ -80,17 +108,31 @@ interface ListLinkProps {
 const ListLink = ({ children, to }: ListLinkProps) => {
   return (
     <li>
-      <Link
-        // css={css`
-        //   margin-right: 1rem;
-        // `}
-        to={to}
-      >
-        {children}
-      </Link>
+      <Link to={to}>{children}</Link>
     </li>
   )
 }
+
+const linkListStyle = css`
+  grid-area: menu;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  align-items: center;
+  width: 100%;
+  li {
+    margin-bottom: 0;
+    margin-left: 1rem;
+  }
+  ${mediaQueries[0]} {
+    grid-area: links;
+    li {
+      margin-left: 0;
+      margin-bottom: 1rem;
+    }
+  }
+`
 
 interface HeaderProps {
   title: string
@@ -112,10 +154,7 @@ export const Header = ({ title }: HeaderProps) => {
       <h1 style={{ margin: 0 }}>
         <Link
           style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
             color: `inherit`,
-            // fontSize: `24px`,
           }}
           to={`/`}
         >
@@ -123,7 +162,17 @@ export const Header = ({ title }: HeaderProps) => {
         </Link>
       </h1>
 
-      <div css={headerListStyles}>
+      <MenuIcon clickHandler={menuClickHandler} />
+      {showDropdownMenu ? (
+        <ul css={linkListStyle}>
+          <ListLink to={"/"}>About</ListLink>
+          <ListLink to={"/projects/"}>Projects</ListLink>
+          <ListLink to={"/blog/"}>Blog</ListLink>
+          <ListLink to={"/contact/"}>Contact</ListLink>
+        </ul>
+      ) : null}
+
+      {/* <div css={headerListStyles}>
         <MenuIcon clickHandler={menuClickHandler} />
         {showDropdownMenu ? (
           <ul>
@@ -133,7 +182,7 @@ export const Header = ({ title }: HeaderProps) => {
             <ListLink to={"/contact/"}>Contact</ListLink>
           </ul>
         ) : null}
-      </div>
+      </div> */}
     </header>
   )
 }

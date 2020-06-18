@@ -52,10 +52,14 @@ const projectGridStyle = css`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.35rem;
-  @media only screen and (max-width: 450px) {
+  ${mediaQueries[0]} {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  ${mediaQueries[1]} {
+    grid-template-columns: 1fr 1fr;
   }
 `
 

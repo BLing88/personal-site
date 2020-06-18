@@ -16,10 +16,6 @@ interface LayoutProps {
 }
 
 export const defaultStyle = css`
-  header {
-    padding: ${rhythm(1.5)} calc(50vw - ${rhythm(20)});
-  }
-
   main,
   footer {
     max-width: ${rhythm(25)};
@@ -30,9 +26,9 @@ export const defaultStyle = css`
     margin-bottom: ${rhythm(1.5)};
   }
 
-  ${mediaQueries[0]} {
-    padding: ${rhythm(1.5)};
+  padding: ${rhythm(1.5)};
 
+  ${mediaQueries[0]} {
     header {
       margin-bottom: 0;
     }
