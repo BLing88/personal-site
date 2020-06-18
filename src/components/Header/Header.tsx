@@ -47,13 +47,6 @@ const MenuIcon = ({ clickHandler }: MenuIconProps) => (
   </button>
 )
 
-// const headerStyles = css`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin-bottom: 2rem;
-// `
-
 const headerStyles = css`
   display: grid;
   grid-template-columns: 1fr auto;
@@ -67,36 +60,6 @@ const headerStyles = css`
   margin-bottom: 1rem;
   ${mediaQueries[0]} {
     padding-bottom: 0;
-  }
-`
-
-const headerListStyles = css`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0;
-  ul {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    margin: 0;
-    align-items: center;
-    width: 100%;
-  }
-  li {
-    margin-bottom: 0;
-  }
-  ${mediaQueries[0]} {
-    flex-direction: column;
-    ul {
-      width: 100%;
-      background-color: white;
-      flex-direction: column;
-      top: 110%;
-      position: absolute;
-      list-style: none;
-    }
   }
 `
 
@@ -171,18 +134,6 @@ export const Header = ({ title }: HeaderProps) => {
           <ListLink to={"/contact/"}>Contact</ListLink>
         </ul>
       ) : null}
-
-      {/* <div css={headerListStyles}>
-        <MenuIcon clickHandler={menuClickHandler} />
-        {showDropdownMenu ? (
-          <ul>
-            <ListLink to={"/"}>About</ListLink>
-            <ListLink to={"/projects/"}>Projects</ListLink>
-            <ListLink to={"/blog/"}>Blog</ListLink>
-            <ListLink to={"/contact/"}>Contact</ListLink>
-          </ul>
-        ) : null}
-      </div> */}
     </header>
   )
 }
