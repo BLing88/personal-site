@@ -28,6 +28,7 @@ const blogPostStyle = css`
 const BlogPostTemplate = ({ data, pageContext }: BlogPostProps) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
+  const tags = post.frontmatter.tags
   const { previous, next } = pageContext
 
   return (
@@ -51,6 +52,12 @@ const BlogPostTemplate = ({ data, pageContext }: BlogPostProps) => {
           </p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        {tags ? (
+          <p>
+            <strong>Tags:</strong>&nbsp;
+            {tags.join(", ")}
+          </p>
+        ) : null}
         <hr />
         <footer>
           <Bio />
@@ -104,6 +111,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
       }
     }
   }
