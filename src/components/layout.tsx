@@ -23,9 +23,6 @@ export const defaultStyle = css`
     margin-left: auto;
     margin-right: auto;
   }
-  footer {
-    margin-bottom: ${rhythm(1.5)};
-  }
 
   padding: ${rhythm(1.5)};
 
@@ -50,7 +47,7 @@ const Layout = ({ title, children, style }: LayoutProps) => {
           <EmailIcon />
         </a>{" "}
         &bull;{" "}
-        <small>
+        <small style={{ opacity: 0.75 }}>
           © {new Date().getFullYear()} Brandon Ling, built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
