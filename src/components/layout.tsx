@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react"
-import { Header } from "../components/Header"
-
+import { Header } from "./Header"
+import GithubIcon from "./GithubIcon"
+import EmailIcon from "./EmailIcon"
 import { rhythm } from "../utils/typography"
 import { css, SerializedStyles } from "@emotion/core"
 import { mediaQueries } from "../utils/media-queries"
@@ -41,9 +42,19 @@ const Layout = ({ title, children, style }: LayoutProps) => {
       <Header title={title} />
       <main>{children}</main>
       <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
+        <a href="https://github.com/BLing88">
+          <GithubIcon />
+        </a>{" "}
+        &bull;{" "}
+        <a href="mailto:brandonling.dev@gmail.com">
+          <EmailIcon />
+        </a>{" "}
+        &bull;{" "}
+        <small>
+          © {new Date().getFullYear()} Brandon Ling, built with
+          {` `}
+          <a href="https://www.gatsbyjs.org">Gatsby</a>
+        </small>
       </footer>
     </div>
   )
