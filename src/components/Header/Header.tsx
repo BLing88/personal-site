@@ -79,7 +79,7 @@ const ListLink = ({ children, to }: ListLinkProps) => {
 const linkListStyle = css`
   grid-area: menu;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   list-style: none;
   margin: 0;
   align-items: center;
@@ -131,7 +131,6 @@ export const Header = ({ title }: HeaderProps) => {
           <ListLink to={"/"}>About</ListLink>
           <ListLink to={"/projects/"}>Projects</ListLink>
           <ListLink to={"/blog/"}>Blog</ListLink>
-          <ListLink to={"/contact/"}>Contact</ListLink>
         </ul>
       ) : null}
     </header>
