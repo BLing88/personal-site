@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import { css } from "@emotion/core"
+require(`gatsby-remark-mathjax-ssr/mathjax.css`)
 
 interface BlogPostProps {
   data: {
