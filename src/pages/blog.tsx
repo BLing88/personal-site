@@ -64,7 +64,7 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
 
   return (
     <Layout title={siteTitle} style={blogPostPageStyles}>
-      <SEO title="All posts" lang="en" />
+      <SEO title="All posts" />
       <div>
         <Bio />
         {posts.map(({ node }) => {
