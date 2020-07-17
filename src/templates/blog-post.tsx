@@ -50,15 +50,10 @@ const BlogPostTemplate = ({ data, pageContext }: BlogPostProps) => {
             }}
           >
             {post.frontmatter.date}
+            {tags ? <> &bull; {tags.join(", ")}</> : null}
           </p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        {tags ? (
-          <p>
-            <strong>Tags:</strong>&nbsp;
-            {tags.join(", ")}
-          </p>
-        ) : null}
         <hr />
         <footer>
           <Bio />
