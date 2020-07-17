@@ -46,6 +46,8 @@ const blogPostStyle = css`
     padding: 0;
     margin-bottom: 0.25rem;
   }
+
+  margin-bottom: 2.5rem;
 `
 
 const blogPageHeaderStyle = css`
