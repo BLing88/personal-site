@@ -29,6 +29,8 @@ The main question still stuck in my head is: So what? OK, great, we can do all t
 
 What I want to see is a direct application of category theory to programming, for example, a direct application of a theorem or concept that leads us to something new that would have been difficult to come up with otherwise. I suppose [monads][monads] count as an application, but I’d like to see one a bit more general.
 
+I suspect that the major benefit of category theory is practice with abstract thinking and being better able to identify related structures in seemingly unrelated things.
+
 ## The plan
 
 I’ve decided to learn category theory. My main reference will be Bartosz Milewski’s

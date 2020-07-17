@@ -38,7 +38,7 @@ From the picture above, hopefully it’s clear what we mean by a network of rela
    id_B \circ f = f
    $$
 
-   ![identity morphisms](./identity.jpg)
+   ![identity morphisms](./identity.jpg "Identity morphisms don’t change anything when composed with other morphisms.")
 
 We can think of the identity morphism as acting like zero does when adding numbers &mdash; it doesn’t change anything.
 
@@ -67,7 +67,7 @@ We also have to check for identity morphisms and compositionality. Clearly each 
 
 We get a category if we take websites to be the objects and connectivity between sites to be the morphisms. By connectivity, I mean that you can reach one website from another, by clicking a link for example.
 
-![the internet as a category](./internet.jpg)
+![the internet as a category](./internet.jpg "A few connected websites")
 
 ### Module dependencies
 
