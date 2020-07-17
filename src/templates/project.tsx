@@ -29,7 +29,7 @@ const projectPageStyle = css`
   ${defaultStyle};
 
   main a {
-    text-decoration: underline;
+    text-decoration: none;
     color: ${linkColor};
   }
 
