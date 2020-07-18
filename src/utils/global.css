@@ -2,6 +2,8 @@ body {
   --baseTextColor: 72, 100%, 98%; /* hsl values */
   --baseBackgroundColor: 0, 0%, 20%;
   --baseAccentColor: 274, 52%, 70%;
+  --inlineCode-bg: rgba(115, 124, 153, 0.2);
+  --inlineCode-text: #fdfff5;
 }
 
 h1,
