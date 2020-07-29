@@ -29,6 +29,7 @@ interface MenuIconProps {
 }
 const MenuIcon = ({ clickHandler }: MenuIconProps) => (
   <button
+    aria-label="menu"
     onClick={e => {
       e.preventDefault()
       clickHandler()
@@ -111,7 +112,7 @@ export const Header = ({ title }: HeaderProps) => {
     if (window && window.innerWidth <= breakpoints[0]) {
       setShowMenuButton(true)
     }
-  }, [setShowMenuButton, window.innerWidth])
+  }, [setShowMenuButton])
 
   return (
     <header css={headerStyles}>
