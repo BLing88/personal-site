@@ -43,8 +43,8 @@ const homePageStyles = css`
     position: fixed;
     z-index: 2;
     width: 100%;
-    padding: ${rhythm(1.5)} max(calc(50vw - ${rhythm(18.5)}), ${rhythm(1)}) 0
-      max(calc(50vw - ${rhythm(18.5)}), ${rhythm(1)});
+    padding: ${rhythm(1)} max(calc(50vw - ${rhythm(19)}), ${rhythm(1)}) 0
+      max(calc(50vw - ${rhythm(19)}), ${rhythm(1)});
   }
 
   main {
