@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { PageProps, graphql } from "gatsby"
 import { css } from "@emotion/core"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 import { mediaQueries } from "../utils/media-queries"
+import Img from "gatsby-image"
 
 type Data = {
   site: {
@@ -30,11 +31,8 @@ type Data = {
 }
 
 const homePageStyles = css`
-  padding: ${rhythm(1.5)};
-
   main,
   footer {
-    padding: 0 calc(50vw - ${rhythm(20)});
     margin-left: auto;
     margin-right: auto;
     font-size: 1.1rem;
@@ -44,11 +42,17 @@ const homePageStyles = css`
   header {
     position: fixed;
     z-index: 2;
-    width: calc(100% - 2 * ${rhythm(1.5)});
+    width: 100%;
+    padding: ${rhythm(1.5)} max(calc(50vw - ${rhythm(18.5)}), ${rhythm(1)}) 0
+      max(calc(50vw - ${rhythm(18.5)}), ${rhythm(1)});
   }
 
   main {
     font-size: 2.5rem;
+  }
+
+  img {
+    margin: 0;
   }
 
   footer {
@@ -56,15 +60,23 @@ const homePageStyles = css`
   }
 
   ${mediaQueries[0]} {
-    padding: ${rhythm(1.5)} ${rhythm(1 + 3 / 4)};
+    padding: 0;
+
+    header {
+      width: 100%;
+      padding: ${rhythm(1)};
+    }
+
     main {
-      text-align: left;
+      font-size: 1.75rem;
     }
   }
 `
 
 const HomePage = ({ data }: PageProps<Data>) => {
   const siteTitle = data.site.siteMetadata.title
+  const teachingImg = data.teachingImg
+  const screenshotImg = data.screenshotImg
 
   return (
     <Layout title={siteTitle} style={homePageStyles}>
@@ -73,13 +85,16 @@ const HomePage = ({ data }: PageProps<Data>) => {
         css={css`
           position: fixed;
           z-index: 1;
-          padding-right: calc(50vw - ${rhythm(20)} + 2.1rem);
+          padding: 0 max(calc(50vw - ${rhythm(18.5)}), ${rhythm(1)});
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           height: 100vh;
           overflow: scroll;
           scroll-snap-type: y mandatory;
+          ${mediaQueries[0]} {
+            margin: 1rem;
+          }
         `}
       >
         <div
@@ -90,13 +105,20 @@ const HomePage = ({ data }: PageProps<Data>) => {
             min-height: 100vh;
             scroll-snap-align: start;
             ${mediaQueries[0]} {
-              min-height: 90vh;
-              grid-template-columns: auto;
-              grid-template-rows: 1fr auto;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
             }
           `}
         >
-          <p>
+          <p
+            css={css`
+              ${mediaQueries[0]} {
+                order: 2;
+                margin-top: 1rem;
+              }
+            `}
+          >
             I’m a former{" "}
             <span>
               <strong>
@@ -109,41 +131,57 @@ const HomePage = ({ data }: PageProps<Data>) => {
                 <em>developer</em>
               </strong>
             </span>
+            .
           </p>
           <img
-            src={require("../../content/assets/Untitled_Artwork3.png")}
+            src={require("../../content/assets/life-feynman-diagram.png")}
             alt="From physicist to developer as a Feynman diagram"
-            // css={css`
-            //   grid-area: description-image;
-            // `}
           />
         </div>
 
         <div
           css={css`
-            display: grid;
-            align-items: center;
-            justify-items: center;
-            grid-template-columns: 1;
-            min-height: 100vh;
             scroll-snap-align: start;
-            background: no-repeat center;
-            background-image: linear-gradient(
-                hsla(var(--baseBackgroundColor), 0.3),
-                hsla(var(--baseBackgroundColor), 0.3)
-              ),
-              url(${require("../../content/assets/teaching.jpg")});
-            background-size: contain;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: "overlap";
+            align-items: center;
+            ${mediaQueries[0]} {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            }
           `}
         >
+          <Img
+            title="Brandon teaching math and physics"
+            alt="Brandon teaching math and physics"
+            fluid={teachingImg.childImageSharp.fluid}
+            style={{
+              gridArea: "overlap",
+              minWidth: `100%`,
+            }}
+            imgStyle={{
+              opacity: 0.55,
+            }}
+          />
+
           <p
             css={css`
               font-size: 3.888rem;
               font-weight: bold;
               text-align: center;
+              grid-area: overlap;
+              z-index: 2;
+              ${mediaQueries[0]} {
+                font-size: 2.5rem;
+                order: 2;
+                margin-top: 2rem;
+              }
             `}
           >
-            I teach physics and math.
+            I teach math and physics.
           </p>
         </div>
         <div
@@ -153,27 +191,30 @@ const HomePage = ({ data }: PageProps<Data>) => {
             grid-template-columns: 3fr 2fr;
             min-height: 100vh;
             scroll-snap-align: start;
+            grid-template-areas: "image text";
             ${mediaQueries[0]} {
-              grid-template-areas: "overlap";
+              grid-template-areas: "image";
               grid-template-columns: auto;
               grid-template-rows: 1fr;
             }
           `}
         >
-          <img
-            src={require("../../content/assets/screenshot.png")}
-            alt="Brandon Ling"
-            css={css`
-              ${mediaQueries[0]} {
-                grid-area: overlap;
-              }
-            `}
+          <Img
+            fluid={screenshotImg.childImageSharp.fluid}
+            title="code screenshot"
+            alt="code screenshot"
+            style={{
+              gridArea: "image",
+            }}
           />
           <p
             css={css`
               text-align: center;
+              grid-area: text;
+              z-index: 2;
               ${mediaQueries[0]} {
-                grid-area: overlap;
+                grid-area: image;
+                font-weight: bold;
               }
             `}
           >
@@ -192,6 +233,22 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+
+    teachingImg: file(absolutePath: { regex: "/teaching.jpg/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+
+    screenshotImg: file(absolutePath: { regex: "/screenshot.png/" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
       }
     }
   }

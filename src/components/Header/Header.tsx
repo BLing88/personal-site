@@ -89,6 +89,7 @@ const linkListStyle = css`
     margin-left: 1rem;
   }
   ${mediaQueries[0]} {
+    background-color: hsl(var(--baseBackgroundColor));
     grid-area: links;
     li {
       margin-left: 0;
