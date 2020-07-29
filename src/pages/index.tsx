@@ -1,8 +1,7 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { PageProps, graphql } from "gatsby"
 import { css } from "@emotion/core"
-
-import Layout, { defaultStyle } from "../components/layout"
+import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 import { mediaQueries } from "../utils/media-queries"
@@ -31,27 +30,29 @@ type Data = {
 }
 
 const homePageStyles = css`
-  ${defaultStyle};
-  height: calc(100vh - ${rhythm(3)});
+  padding: ${rhythm(1.5)};
+
   main,
   footer {
-    max-width: ${rhythm(25)};
+    padding: 0 calc(50vw - ${rhythm(20)});
     margin-left: auto;
     margin-right: auto;
     font-size: 1.1rem;
     text-align: left;
   }
 
+  header {
+    position: fixed;
+    z-index: 2;
+    width: calc(100% - 2 * ${rhythm(1.5)});
+  }
+
   main {
-    font-size: 1.25rem;
-    height: 100%;
-    p {
-      margin-bottom: 2rem;
-    }
+    font-size: 2.5rem;
   }
 
   footer {
-    visibility: hidden;
+    display: none;
   }
 
   ${mediaQueries[0]} {
@@ -70,16 +71,115 @@ const HomePage = ({ data }: PageProps<Data>) => {
       <SEO title={siteTitle} lang="en" />
       <div
         css={css`
-          height: 100%;
+          position: fixed;
+          z-index: 1;
+          padding-right: calc(50vw - ${rhythm(20)} + 2.1rem);
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          height: 100vh;
+          overflow: scroll;
+          scroll-snap-type: y mandatory;
         `}
       >
-        <p>I&rsquo;m a former physicist turned self&ndash;taught developer.</p>
-        <p>I love learning natural languages.</p>
-        <p>I teach physics and math.</p>
-        <p>I write code.</p>
+        <div
+          css={css`
+            display: grid;
+            align-items: center;
+            grid-template-columns: 3fr 2fr;
+            min-height: 100vh;
+            scroll-snap-align: start;
+            ${mediaQueries[0]} {
+              min-height: 90vh;
+              grid-template-columns: auto;
+              grid-template-rows: 1fr auto;
+            }
+          `}
+        >
+          <p>
+            I’m a former{" "}
+            <span>
+              <strong>
+                <em>physicist</em>
+              </strong>
+            </span>{" "}
+            turned self&ndash;taught{" "}
+            <span>
+              <strong>
+                <em>developer</em>
+              </strong>
+            </span>
+          </p>
+          <img
+            src={require("../../content/assets/Untitled_Artwork3.png")}
+            alt="From physicist to developer as a Feynman diagram"
+            // css={css`
+            //   grid-area: description-image;
+            // `}
+          />
+        </div>
+
+        <div
+          css={css`
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            grid-template-columns: 1;
+            min-height: 100vh;
+            scroll-snap-align: start;
+            background: no-repeat center;
+            background-image: linear-gradient(
+                hsla(var(--baseBackgroundColor), 0.3),
+                hsla(var(--baseBackgroundColor), 0.3)
+              ),
+              url(${require("../../content/assets/teaching.jpg")});
+            background-size: contain;
+          `}
+        >
+          <p
+            css={css`
+              font-size: 3.888rem;
+              font-weight: bold;
+              text-align: center;
+            `}
+          >
+            I teach physics and math.
+          </p>
+        </div>
+        <div
+          css={css`
+            display: grid;
+            align-items: center;
+            grid-template-columns: 3fr 2fr;
+            min-height: 100vh;
+            scroll-snap-align: start;
+            ${mediaQueries[0]} {
+              grid-template-areas: "overlap";
+              grid-template-columns: auto;
+              grid-template-rows: 1fr;
+            }
+          `}
+        >
+          <img
+            src={require("../../content/assets/screenshot.png")}
+            alt="Brandon Ling"
+            css={css`
+              ${mediaQueries[0]} {
+                grid-area: overlap;
+              }
+            `}
+          />
+          <p
+            css={css`
+              text-align: center;
+              ${mediaQueries[0]} {
+                grid-area: overlap;
+              }
+            `}
+          >
+            I write code.
+          </p>
+        </div>
       </div>
     </Layout>
   )
