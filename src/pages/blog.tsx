@@ -37,7 +37,7 @@ const blogPostPageStyles = css`
   ${defaultStyle};
 
   ${mediaQueries[0]} {
-    padding: ${rhythm(1.5)} ${rhythm(1 + 3 / 4)};
+    padding: ${rhythm(1)};
   }
 `
 

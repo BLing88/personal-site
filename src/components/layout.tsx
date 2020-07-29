@@ -24,7 +24,7 @@ export const defaultStyle = css`
     margin-right: auto;
   }
 
-  padding: ${rhythm(1.5)};
+  padding: ${rhythm(1)};
 
   ${mediaQueries[0]} {
     header {
