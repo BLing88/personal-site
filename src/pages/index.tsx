@@ -136,6 +136,7 @@ const HomePage = ({ data }: PageProps<Data>) => {
           <img
             src={require("../../content/assets/life-feynman-diagram.png")}
             alt="From physicist to developer as a Feynman diagram"
+            title="From physicist to developer as a Feynman diagram"
           />
         </div>
 
