@@ -32,10 +32,6 @@ const projectPageStyle = css`
     text-decoration: none;
     color: ${linkColor};
   }
-
-  ${mediaQueries[0]} {
-    padding: ${rhythm(1.5)};
-  }
 `
 const Project = ({ data }: ProjectProps) => {
   const project = data.markdownRemark
