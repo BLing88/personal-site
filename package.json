@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "brandons-personal-site",
   "private": true,
   "description": "Brandon Ling's personal website",
   "version": "0.1.0",
   "author": "Brandon Ling",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/BLing88/personal-site/issues"
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
