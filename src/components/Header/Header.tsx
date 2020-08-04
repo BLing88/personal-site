@@ -133,6 +133,7 @@ export const Header = ({ title }: HeaderProps) => {
           <ListLink to={"/"}>About</ListLink>
           <ListLink to={"/projects/"}>Projects</ListLink>
           <ListLink to={"/blog/"}>Blog</ListLink>
+          <ListLink to={"/contact/"}>Contact</ListLink>
         </ul>
       ) : null}
     </header>

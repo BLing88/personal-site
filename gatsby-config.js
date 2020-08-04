@@ -7,6 +7,9 @@ module.exports = {
     },
     description: `Brandon’s personal site`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
+    email: `brandonling.dev@gmail.com`,
+    github: `Bling88`,
+    linkedIn: `www.linkedin.com/in/brandon-ling-`,
   },
   plugins: [
     `gatsby-plugin-emotion`,
