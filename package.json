@@ -1,8 +1,8 @@
 {
-  "name": "brandons-personal-site",
+  "name": "brandonling.dev",
   "private": true,
   "description": "Brandon Ling's personal website",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Brandon Ling",
   "bugs": {
     "url": "https://github.com/BLing88/personal-site/issues"
@@ -45,7 +45,7 @@
     "prettier": "2.0.5",
     "typescript": "^3.9.7"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://brandonling.dev",
   "license": "MIT",
   "main": "n/a",
   "repository": {
