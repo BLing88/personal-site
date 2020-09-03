@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "prettier": "^2.1.1",
-    "typescript": "^3.9.7"
+    "typescript": "^4.0.2"
   },
   "homepage": "https://brandonling.dev",
   "license": "MIT",
