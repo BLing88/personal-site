@@ -5,11 +5,12 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import { css } from "@emotion/core"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 require(`gatsby-remark-mathjax-ssr/mathjax.css`)
 
 interface BlogPostProps {
   data: {
-    markdownRemark: any
+    mdx: any
     site: {
       siteMetadata: {
         title: string
@@ -27,7 +28,7 @@ const blogPostStyle = css`
 `
 
 const BlogPostTemplate = ({ data, pageContext }: BlogPostProps) => {
-  const post = data.markdownRemark
+  const post = data.mdx
   const siteTitle = data.site.siteMetadata.title
   const tags = post.frontmatter.tags
   const { previous, next } = pageContext
@@ -53,7 +54,7 @@ const BlogPostTemplate = ({ data, pageContext }: BlogPostProps) => {
             {tags ? <> &bull; {tags.join(", ")}</> : null}
           </p>
         </header>
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <MDXRenderer>{post.body}</MDXRenderer>
         <hr />
         <footer>
           <Bio />
@@ -100,10 +101,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
-      html
+      body
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

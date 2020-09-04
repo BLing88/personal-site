@@ -4,7 +4,7 @@ import SEO from "../components/seo"
 import { css } from "@emotion/core"
 import { PageProps, Link, graphql } from "gatsby"
 import { mediaQueries } from "../utils/media-queries"
-import Image from "gatsby-image"
+import Image, { FixedObject } from "gatsby-image"
 import GithubIcon from "../components/GithubIcon"
 
 type ProjectData = {
@@ -13,14 +13,18 @@ type ProjectData = {
       title: string
     }
   }
-  allMarkdownRemark: {
+  allMdx: {
     edges: {
       node: {
         excerpt: string
         frontmatter: {
           title: string
           github_url: string
-          image_url: string
+          image_url: {
+            childImageSharp: {
+              fixed: FixedObject | FixedObject[]
+            }
+          }
           description: string
         }
         fields: {
@@ -79,7 +83,7 @@ const projectsPageStyle = css`
 `
 
 export default function Projects({ data }: PageProps<ProjectData>) {
-  const projects = data.allMarkdownRemark.edges
+  const projects = data.allMdx.edges
   return (
     <Layout
       title={`Brandon Ling${String.fromCharCode(8217)}s Projects`}
@@ -138,7 +142,7 @@ export const projectsPageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(filter: { fields: { content_type: { eq: "project" } } }) {
+    allMdx(filter: { fields: { content_type: { eq: "project" } } }) {
       edges {
         node {
           excerpt

@@ -2,7 +2,7 @@
 import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
-
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import Bio from "../components/bio"
 import Layout, { defaultStyle } from "../components/layout"
 import SEO from "../components/seo"
@@ -15,7 +15,7 @@ type Data = {
       title: string
     }
   }
-  allMarkdownRemark: {
+  allMdx: {
     edges: {
       node: {
         excerpt: string
@@ -62,7 +62,7 @@ const blogPageHeaderStyle = css`
 
 const BlogIndex = ({ data }: PageProps<Data>) => {
   const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMdx.edges
 
   return (
     <Layout title={siteTitle} style={blogPostPageStyles}>
@@ -90,11 +90,7 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
                 </small>
               </header>
               <section>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
+                <p>{node.frontmatter.description || node.excerpt}</p>
               </section>
             </article>
           )
@@ -113,7 +109,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
+    allMdx(
       filter: { fields: { content_type: { eq: "blog" } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {

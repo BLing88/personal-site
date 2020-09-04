@@ -6,6 +6,7 @@ import { rhythm, linkColor } from "../utils/typography"
 import { mediaQueries } from "../utils/media-queries"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 interface ProjectProps {
   data: {
@@ -14,9 +15,9 @@ interface ProjectProps {
         title: string
       }
     }
-    markdownRemark: {
+    mdx: {
       id: string
-      html: string
+      body: string
       frontmatter: {
         title: string
         github_url: string
@@ -34,13 +35,12 @@ const projectPageStyle = css`
   }
 `
 const Project = ({ data }: ProjectProps) => {
-  const project = data.markdownRemark
+  const project = data.mdx
   return (
     <Layout title={data.site.siteMetadata.title} style={projectPageStyle}>
       <SEO title={project.frontmatter.title} lang="en" />
       <h1>{project.frontmatter.title}</h1>
-
-      <section dangerouslySetInnerHTML={{ __html: project.html }}></section>
+      <MDXRenderer>{project.body}</MDXRenderer>
     </Layout>
   )
 }
@@ -54,9 +54,9 @@ export const projectPageQuery = graphql`
         title
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
-      html
+      body
       frontmatter {
         title
         github_url
