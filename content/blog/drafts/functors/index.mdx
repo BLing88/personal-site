@@ -1,0 +1,75 @@
+---
+title: Relating categories with functors
+date: 2020-09-04
+description: How can we relate different categories?
+tags:
+  - category theory
+---
+
+_Functors_ are like the mathematical version of analogies. We often want to relate one category to another. Perhaps we see that one category is embedded inside of another one, or that we can
+consider a simpler view of a category by mapping it onto a less complex one, or that one category is in some sense the same
+as another one (isomorphic). Functors formalize these ideas.
+
+A functor $F$ from a category $\mathcal{C}$ to a category $\mathcal{D}$, often written as $F: \mathcal{C} \to \mathcal{D}$,
+associates an object $F(c)$ in $\mathcal{D}$ for every object $c$ in $\mathcal{C}$ and a morphism $F(f): F(c_1) \to F(c_2)$
+in $\mathcal{D}$ for every morphism $f: c_1 \to c_2$ in $\mathcal{C}.$
+
+Furthermore, $F$ must respect the structure that defines a category, namely identities and composition. This means that
+
+$$
+F(id_c) = id_{F(c)}
+$$
+
+for every $c$ in $\mathcal{C}$ and that for any three objects $c_1, c_2, c_3$
+and morphisms $f: c_1 \to c_2, g: c_2 \to c_3$ in $\mathcal{C}$,
+
+$$
+F(g \circ f) = F(g) \circ F(f)
+$$
+
+in $\mathcal{D}$.
+
+## Category of categories
+
+We can even define a category of categories by taking the objects to be categories and the morphism to be functors between categories.
+We have to define identity morphisms and composition of morphisms.
+
+A category $\mathcal{C}$ has an identity functor $id_{\mathcal{C}}$ which, as you might guess, takes each object to
+itself and each morphism to itself.
+
+## Examples of functors
+
+### Diagrams
+
+Our pictures of categories, now referred to as _diagrams_, are in fact functors! More formally, a _diagram $D$ of shape $\mathcal{J}$
+in $\mathcal{C}$_ is a functor $D: \mathcal{J} \to \mathcal{C}$.
+
+This idea really confused me when I first encountered it, until I realized that what we draw is the _image_ of the functor.
+This is a lot like when we plot a function, e.g. the parabola $y = x^2$, where we often say that the graph _is_ the function.
+
+### Embedding one category within another
+
+### Simplifying categories
+
+An extreme case is a constant functor, which maps all objects to a single object $c$ in the target category and
+all morphisms to the identity morphism $id_c$.
+
+### Isomorphisms
+
+### Database schemas and instances
+
+A database schema $\mathcal{C}$ is essentially a finitely-presented category with path equations. By finitely-presented category,
+we mean that the category is obtained by interpreting a finite graph as a category (taking vertices as objects and arrows as morphisms),
+and relationships between morphisms (often thought of as constraints or business rules) are given by path equations.
+
+An instance (in time) of a database schema $\mathcal{C}$ is a functor from $\mathcal{C}$ to **Set**.
+
+## Nonexamples of functors
+
+If a mapping of categories from $\mathcal{C}$ to $\mathcal{D}$ reverses a morphism, then the mapping can’t be a functor&hellip;
+unless it reverses _all_ the morphisms, in which case it could be a functor from the opposite category $\mathcal{C}^{\text{op}}$ of
+$\mathcal{C}$ to $\mathcal{D}$ (as long as it preserves identities and composition).[^1]
+
+[^1]:
+    Such a functor is sometimes called a _contravariant functor_. A regular functor is referred to as a _covariant
+    functor_.
