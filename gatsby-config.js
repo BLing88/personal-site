@@ -39,6 +39,7 @@ module.exports = {
             options: {},
           },
         ],
+        remarkPlugins: [require(`remark-unwrap-images`)],
       },
     },
     {
