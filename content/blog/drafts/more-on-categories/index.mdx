@@ -29,6 +29,8 @@ One of the simplest preorders is the booleans **Bool** = {false, true}. We get a
 
 The natural numbers $\mathbb{N}$ = {0, 1, 2&hellip; } form a preorder with the usual ordering ≤ (e.g. 5 ≤ 9).
 
+![The booleans and natural numbers form preorders.](./bool-N.jpg)
+
 #### Resource theories
 
 At a basic level, a resource theory is simply a collection of objects, or _resources_,
@@ -49,14 +51,16 @@ This describes the chemical reaction creating water from hydrogen and oxygen.
 
 #### Power sets
 
-Given a set $S$, we can consider its power set $P(S),$ which is the set of all subsets of $S$, as a preorder. If $X$ and $Y$ are subsets of $S$, and thus
-elements of $P(S)$, we say $X ≤ Y$ if $X$ is a subset of $Y$, which we write as $X \subseteq Y$.
+Given a set $S$, we can consider its power set $P(S),$ which is the set of all subsets of $S$, as a preorder. If $X$ and $Y$ are
+subsets of $S$ (and thus elements of $P(S)$) we say $X ≤ Y$ if $X$ is a subset of $Y$, which we write as $X \subseteq Y$.
 
 #### Partial orders
 
 Power sets are also examples of _partially ordered sets_, often abbreviated as _posets_. A poset is a preorder that has the
 additional property that if $x ≤ y$ and $y ≤ x$, then $x = y$. In other words, you can’t have arrows that form loops
 like the following diagram:
+
+![You can’t have loops like this in a partial order.](./loops.jpg)
 
 In terms of sets, if a set $X$ is a subset of $Y$, and $Y$ is a subset of $X$, then they must have exactly the same elements, and thus are
 the same set (prove this!).
@@ -104,6 +108,8 @@ identity morphism $id$. The binary operation $*$ corresponds to composition of m
 A common example of a monoid is that of strings in most programming languages: the empty string `""` is the identity morphism, and string
 concatenation $+$ is composition.
 
+![Strings form a monoid with the concatenation operation.](./string-monoid.jpg)
+
 We’ll talk about another important class of monoids after we introduce the idea of isomorphisms.
 
 ## Isomorphisms
@@ -118,6 +124,8 @@ $$
 We call $f$ and $g$ inverses of each other and write $f = g^{-1}$ and $g = f^{-1}$ to denote this. We also say that $a$ and $b$ are
 _isomorphic_ and that a morphism $h$ is an _isomorphism_ if an inverse $h^{-1}$ exists.
 
+![Isomorphic objects are thought of as equivalent.](./isomorphism.jpg)
+
 I should point out that isomorphisms may not be unique. For example, in **Set**, let $X$ = {a, b, c} and $Y$ = {1, 2, 3}. We can define
 an isomorphism by defining $f_1: X \to Y$ by
 $$f_1(a) = 1, f_1(b) = 2, f_1(c) = 3$$
@@ -130,6 +138,8 @@ $$f_2(a) = 3, f_2(b) = 2, f_2(c) = 1$$
 and $g_2: Y \to X$ by
 $$g_2(1) = c, g_2(2) = b, g_2(3) = a.$$
 Again you can check that $g_2 \circ f_2$ = $id_X$ and $f_2 \circ g_2$ = $id_Y$.
+
+![Isomorphisms may not be unique.](./isomorphism-example.jpg)
 
 In fact there are a few more isomorphisms between $X$ and $Y$. How many are there?
 
@@ -167,14 +177,17 @@ becomes a morphism from $c$ to $a$.
 
 For preorders, this is literally reversing all the arrows.
 
+![The opposite category reverses all the morphisms.](./opposite-category.jpg)
+
 [^1]:
-    The way of combining resources is referred to as a _monoidal product_, which we haven’t discussed before, but the details
+    The way of combining resources corresponds to a _monoidal product_, which we haven’t discussed before, but the details
     aren’t important here. More precisely, a resource theory corresponds to a _symmetric monoidal category_, which we haven’t defined either.
     Check out the paper [_A mathematical theory of resources_](https://arxiv.org/abs/1409.5531) for more details.
 
 [^2]:
-    As an example of the importance of symmetries, Noether’s theorem says that if a physical system has a (continuous) symmetry,
+    As an example of the importance of symmetries, [Noether’s theorem][noether] says that if a physical system has a (continuous) symmetry,
     like a rotational symmetry by arbitrary degree, then that system has a conserved quantity.
     Examples of this include conservation of energy and momentum.
 
 [lorentz]: https://en.wikipedia.org/wiki/Lorentz_covariance
+[noether]: https://en.wikipedia.org/wiki/Noether%27s_theorem
