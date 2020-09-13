@@ -1,16 +1,21 @@
 ---
 title: Relating categories with functors
-date: 2020-09-04
+date: 2020-09-13
 description: How can we relate different categories?
 tags:
   - category theory
 ---
 
-_Functors_ are like the mathematical version of analogies. We often want to relate one category to another. Perhaps we see that one category is embedded inside of another one, or that we can
-consider a simpler view of a category by mapping it onto a less complex one, or that one category is in some sense the same
-as another one (isomorphic). Functors formalize these ideas.
+import { Link } from "gatsby"
 
-A functor $F$ from a category $\mathcal{C}$ to a category $\mathcal{D}$, often written as $F: \mathcal{C} \to \mathcal{D}$,
+> Tl;dr &mdash; we introduce functors which allow us to relate different categories. As an applied example, we think of database schemas
+> as categories and database instances as functors.
+
+We often want to relate one category to another. Perhaps we see that one category is embedded inside of another one, or that we can
+simplify our view of a category by mapping it onto a less complex one, or that one category is in some sense the same
+as another one. _Functors_ formalize these ideas. They’re like the mathematical version of analogies.
+
+A functor $F$ from a category $\mathcal{C}$ to a category $\mathcal{D}$, written as $F: \mathcal{C} \to \mathcal{D}$,
 associates an object $F(c)$ in $\mathcal{D}$ for every object $c$ in $\mathcal{C}$ and a morphism $F(f): F(c_1) \to F(c_2)$
 in $\mathcal{D}$ for every morphism $f: c_1 \to c_2$ in $\mathcal{C}.$
 
@@ -29,47 +34,167 @@ $$
 
 in $\mathcal{D}$.
 
-## Category of categories
-
-We can even define a category of categories by taking the objects to be categories and the morphism to be functors between categories.
-We have to define identity morphisms and composition of morphisms.
-
-A category $\mathcal{C}$ has an identity functor $id_{\mathcal{C}}$ which, as you might guess, takes each object to
-itself and each morphism to itself.
-
 ## Examples of functors
 
 ### Diagrams
 
-Our pictures of categories, now referred to as _diagrams_, are in fact functors! More formally, a _diagram $D$ of shape $\mathcal{J}$
+Our pictures of categories, now referred to as _diagrams_, are in fact functors! Formally, a _diagram $D$ of shape $\mathcal{J}$
 in $\mathcal{C}$_ is a functor $D: \mathcal{J} \to \mathcal{C}$.
 
 This idea really confused me when I first encountered it, until I realized that what we draw is the _image_ of the functor.
 This is a lot like when we plot a function, e.g. the parabola $y = x^2$, where we often say that the graph _is_ the function.
+Below is a picture that illustrates what I mean:
+
+![An example of a diagram in Set.](./diagrams.jpg)
+
+In this picture $P$ is a category with two objects $a$ and $b$ with two morphisms $f$ and $g$ that go from $a$ to $b$.
+I’ve also drawn a few sets in $\mathbf{Set}$ and a few arrows representing functions between them. We want a diagram $D$ of this shape
+relating $\mathbf{Bool}$ to $\mathbb{N}$ in the category $\mathbf{Set}$. $D$ sends $a$ to $\mathbf{Bool}$ and $b$ to $\mathbb{N}.$ $D$
+also selects two functions from $\mathbf{Bool}$ to $\mathbb{N}$ to map $f$ and $g$ to: $f$ to $k: \mathbf{Bool} \to \mathbb{N},$
+and $g$ to $h: \mathbf{Bool} \to \mathbb{N}$.
+
+To the right of the dotted line, I’ve drawn the image of the diagram $D$, which is what we would normally draw for $D$.
+
+### Isomorphic categories
+
+Following our discussion of isomorphisms in my <Link to="/posts/more-on-categories">last post</Link>, two categories $\mathcal{C}$ and $\mathcal{D}$ are _isomorphic_
+if there are functors $F: \mathcal{C} \to \mathcal{D}$ and $G: \mathcal{D} \to \mathcal{C}$ such that
+
+$$
+G \circ F = id_\mathcal{C} \quad \text{and} \quad F \circ G = id_\mathcal{D}.
+$$
+
+![An example of isomorphic categories. To prevent cluttering the diagram, I’ve drawn the mapping between objects
+ as double arrowed dotted lines. Notice that the mapping of morphisms is uniquely determined by the mapping of objects in this example.
+ ](./isomorphic-categories.jpg)
+
+Each category $\mathcal{C}$ has an identity functor $id_{\mathcal{C}}$ which, as you might guess, takes each object to
+itself and each morphism to itself.
 
 ### Embedding one category within another
 
-### Simplifying categories
+Going from a smaller category $\mathcal{C}$ to a larger category $\mathcal{D}$ (in terms of objects),
+we can think of a functor as embedding $\mathcal{C}$ in $\mathcal{D}$ if no information is lost, i.e. no objects or morphisms
+are smooshed together.
+
+![There are multiple embeddings of the category on the left to the category on the right.
+ Again, the mapping of morphisms is determined by the mapping of the objects in this example.
+ Can you come up with any more embeddings?](./embedding-example.jpg)
+
+### Collapsing categories
+
+#### Example from Bool to Set
+
+Recall $\mathbf{Bool}$ is the two-element preorder given by false $≤$ true. We can define a functor $F: \mathbf{Bool} \to \mathbf{Set}$
+by $F(\text{false}) = F(\text{true}) = [0, 1]$ where $[0,1]$ is the set of all real numbers in between and including 0 and 1. $F$ sends
+$≤: \text{false} \to \text{true}$ to $f: [0, 1] \to [0,1]$ defined by $f(x) = x^2$ for all $x$ in $[0, 1].$
+
+#### Constant functors
 
 An extreme case is a constant functor, which maps all objects to a single object $c$ in the target category and
 all morphisms to the identity morphism $id_c$.
 
-### Isomorphisms
-
-### Database schemas and instances
-
-A database schema $\mathcal{C}$ is essentially a finitely-presented category with path equations. By finitely-presented category,
-we mean that the category is obtained by interpreting a finite graph as a category (taking vertices as objects and arrows as morphisms),
-and relationships between morphisms (often thought of as constraints or business rules) are given by path equations.
-
-An instance (in time) of a database schema $\mathcal{C}$ is a functor from $\mathcal{C}$ to **Set**.
+![A constant functor maps all objects to a single object in another category and maps
+all morphisms to that object’s identity morphism.](./constant-functor.jpg)
 
 ## Nonexamples of functors
 
-If a mapping of categories from $\mathcal{C}$ to $\mathcal{D}$ reverses a morphism, then the mapping can’t be a functor&hellip;
-unless it reverses _all_ the morphisms, in which case it could be a functor from the opposite category $\mathcal{C}^{\text{op}}$ of
-$\mathcal{C}$ to $\mathcal{D}$ (as long as it preserves identities and composition).[^1]
+In the picture below, on the left we have a preorder $\mathcal{C}$ that consists of three objects $c, c', c''$ where both
+$c$ and $c''$ are $≤ c''$ (the corresponding arrows are labeled $f$ and $g$). On the right is a preorder $\mathcal{D}$ with three objects
+$d, d', d''$ where $d ≤ d' ≤ d''$ (the corresponding arrows are labeled $f'$ and $g'$).
 
-[^1]:
-    Such a functor is sometimes called a _contravariant functor_. A regular functor is referred to as a _covariant
-    functor_.
+I’ve also drawn a mapping of objects and morphisms of $\mathcal{C}$ to $\mathcal{D}$ which is _not_ a functor. The mapping respects the
+direction of $f$, but it reverses the direction of $g$, in the sense that $g$ has source $c''$, which maps to $d''$, and
+target $c'$, which maps to $d'$, but $g$ is mapped to $g'$ which has source $d'$ and target $d''$.
+
+![An example of a mapping between categories that is not a functor. It doesn’t preserve the direction of the arrow g.](./non-functor.jpg)
+
+As we just saw if a mapping of categories from $\mathcal{C}$ to $\mathcal{D}$ reverses morphisms, then the mapping can’t be a functor&hellip;
+unless it reverses _all_ the morphisms, in which case it could be a functor from the opposite category $\mathcal{C}^{\text{op}}$
+to $\mathcal{D}$ (as long as it preserves identities and composition). Such a functor is known as a _contravariant functor_.
+A regular functor is referred to as a _covariant functor_.
+
+![This mapping of C to D is not a functor from C to D since it reverses all the morphisms,
+ but it is a functor from the opposite category of C to D. It’s called a contravariant functor from C to D.](./contravariant-functor.jpg)
+
+### Database schemas and instances
+
+A database schema $\mathcal{C}$ is essentially a finitely-presented category with path equations.
+
+By finitely-presented category,
+we mean that the category is obtained by interpreting a finite graph as a category (taking vertices as objects and arrows as morphisms),
+and relationships between morphisms (often thought of as constraints or business rules) are given by path equations.
+
+Here’s an example schema for a university that is pretty self-explanatory:
+
+![A simple schema for a university.](./university-schema.jpg)
+
+We have a constraint Dept.chair.worksIn = Dept, which says that the chair of a department works in that department. This
+constraint leads to other constraints, like Professor.worksIn.chair.worksIn.chair = Professor.worksIn.chair, which amounts to saying
+that a professor’s department chair’s chair is themself.
+
+An instance (in time) of a database schema $\mathcal{C}$, i.e. actual data, is a functor from $\mathcal{C}$ to **Set**.
+
+Here is a schema $\mathcal{C}$:
+
+![An example abstract database schema.](./database-schema-example.jpg)
+
+We can give this a concrete representation as a database instance by defining a functor $F: \mathcal{C} \to \textbf{Set}$ by setting
+$F(a)$ to be the set of all college students in the US, $F(b)$ to be the set of all students at a given university $X$, and $F(c)$ to be
+the power set of all courses at $X$.
+
+$F(f)$ selects out the all students at the university $X$ who got all A’s, $F(g)$ maps students at $X$ to their favorite courses,
+and $F(h)$ maps students at $X$ to the courses they got at least a B in.
+
+In general, the courses that students get A’s in may not be the same as their favorite courses, but if we first filter
+the students that get an A in all their courses, then those students’ favorite courses are the same as the courses that they at least
+got a B in. In other words, $F(g) \neq F(h)$, but $F(g) \circ F(f) = F(h) \circ F(f)$.
+
+#### Graphs as database instances
+
+We can view specific graphs as database instances from the following category $\mathbf{Gr}$:
+
+![A diagram of the category Gr representing a graph schema.](./GR.jpg)
+
+As an example, we can view the graph pictured below as a functor into $\mathbf{Set}$, where $G(\text{vertex}) = \{1, 2, 3, 4, 5, 6 \}$,
+$G(\text{arrow}) = \{a, b, c, d, e, f, g \}$ where
+
+$$
+a: 1 \to 5 \\
+b: 4 \to 2 \\
+c: 1 \to 2 \\
+d: 5 \to 4 \\
+e: 5 \to 3 \\
+f: 5 \to 4 \\
+g: 2 \to 1,
+$$
+
+$G(\text{source})$ maps each arrow to its source vertex, and $G(\text{target})$ maps each arrow to its target vertex.
+
+![A graph G as a database instance of Gr.](./graph-example.jpg)
+
+As is discussed in [Seven Sketches in Compositionality][seven sketches], you can use functors between database schemas to create
+special functors to migrate data. The benefit is that you can reason with them and prove that a data migration won’t fail.
+
+## Category of categories
+
+We can even define a category of categories by taking the objects to be categories and the morphism to be functors between categories.
+
+We discussed identity functors above with isomorphisms, and as for composition, if $F: \mathcal{A} \to \mathcal{B}$ and
+$G: \mathcal{B} \to \mathcal{C}$ are functors, we define the functor
+$G \circ F: \mathcal{A} \to \mathcal{C}$ by sending objects $a$ of $A$ to $G(F(a))$ and morphisms $f: x \to y$ of $\mathcal{A}$ to
+$G(F(f)): G(F(x)) \to G(F(y)).$
+
+## Do functors form categories?
+
+Functors relate categories to one another, but can we also think of functors in their own categories? The answer is yes, and categories
+whose objects can be interpreted as functors are known as _functor categories_.
+
+But what are the morphisms in such a category? How do we relate one functor to another? This will be the topic of my next category
+theory post &mdash; _natural transformations_.
+
+## References
+
+See chapter 3 of [Seven Sketches in Compositionality][seven sketches] for much more detail on all of the topics covered here and more.
+
+[seven sketches]: https://arxiv.org/abs/1803.05316
