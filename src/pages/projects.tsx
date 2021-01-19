@@ -1,4 +1,3 @@
-import React from "react"
 import Layout, { defaultStyle } from "../components/layout"
 import SEO from "../components/seo"
 import { css } from "@emotion/core"

@@ -1,6 +1,5 @@
 // Gatsby supports TypeScript natively!
-import React from "react"
-import { PageProps, Link, graphql } from "gatsby"
+import { PageProps, Link, graphql } from "gatsby";
 import { css } from "@emotion/core"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Bio from "../components/bio"

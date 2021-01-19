@@ -1,4 +1,3 @@
-import React from "react"
 import Layout, { defaultStyle } from "../components/layout"
 import { mediaQueries } from "../utils/media-queries"
 import SEO from "../components/seo"

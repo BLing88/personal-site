@@ -1,4 +1,3 @@
-import React from "react"
 import { graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { defaultStyle } from "../components/layout"

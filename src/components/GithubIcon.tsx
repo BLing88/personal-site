@@ -1,4 +1,3 @@
-import React from "react"
 import { baseTextColor } from "../utils/typography"
 import { css } from "@emotion/core"
 

@@ -1,4 +1,5 @@
-import React, { useState, useLayoutEffect } from "react"
+import { useState, useLayoutEffect } from "react";
+import * as React from "react";
 import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import { breakpoints, mediaQueries } from "../../utils/media-queries"

@@ -1,4 +1,3 @@
-import React from "react"
 import { PageProps, graphql } from "gatsby"
 import { css } from "@emotion/core"
 import Layout from "../components/layout"
