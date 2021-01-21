@@ -1,4 +1,4 @@
-import { css } from "@emotion/core"
+import { css } from '@emotion/react'
 
 const EmailIcon = () => (
   <svg
@@ -18,24 +18,24 @@ const EmailIcon = () => (
         id="path921"
         d="M 4,6 V 18 H 22 V 6 Z"
         style={{
-          fill: "none",
-          stroke: "#fdfff5",
-          strokeWidth: "1px",
-          strokeLinecap: "butt",
-          strokeLinejoin: "miter",
-          strokeOpacity: 1,
+          fill: 'none',
+          stroke: '#fdfff5',
+          strokeWidth: '1px',
+          strokeLinecap: 'butt',
+          strokeLinejoin: 'miter',
+          strokeOpacity: 1
         }}
       />
       <path
         id="path923"
         d="M 4,6 13,12 22,6"
         style={{
-          fill: "none",
-          stroke: "#fdfff5",
-          strokeWidth: "1px",
-          strokeLinecap: "butt",
-          strokeLinejoin: "miter",
-          strokeOpacity: 1,
+          fill: 'none',
+          stroke: '#fdfff5',
+          strokeWidth: '1px',
+          strokeLinecap: 'butt',
+          strokeLinejoin: 'miter',
+          strokeOpacity: 1
         }}
       />
     </g>

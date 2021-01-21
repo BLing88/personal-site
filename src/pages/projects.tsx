@@ -1,10 +1,10 @@
-import Layout, { defaultStyle } from "../components/layout"
-import SEO from "../components/seo"
-import { css } from "@emotion/core"
-import { PageProps, Link, graphql } from "gatsby"
-import { mediaQueries } from "../utils/media-queries"
-import Image, { FixedObject } from "gatsby-image"
-import GithubIcon from "../components/GithubIcon"
+import Layout, { defaultStyle } from '../components/layout'
+import SEO from '../components/seo'
+import { css } from '@emotion/react'
+import { PageProps, Link, graphql } from 'gatsby'
+import { mediaQueries } from '../utils/media-queries'
+import Image, { FixedObject } from 'gatsby-image'
+import GithubIcon from '../components/GithubIcon'
 
 type ProjectData = {
   site: {
@@ -65,9 +65,9 @@ const projectCardStyle = css`
 `
 
 const linkStyle = {
-  alignSelf: "center",
-  textDecoration: "none",
-  boxShadow: "none",
+  alignSelf: 'center',
+  textDecoration: 'none',
+  boxShadow: 'none'
 }
 
 const truncateString = (str: string, len: number) => {
@@ -81,7 +81,7 @@ const projectsPageStyle = css`
   ${defaultStyle};
 `
 
-export default function Projects({ data }: PageProps<ProjectData>) {
+export default function Projects ({ data }: PageProps<ProjectData>) {
   const projects = data.allMdx.edges
   return (
     <Layout
@@ -96,16 +96,16 @@ export default function Projects({ data }: PageProps<ProjectData>) {
         {projects.map(({ node }) => {
           return (
             <article css={projectCardStyle} key={node.fields.slug}>
-              <figure style={{ display: "flex", flexDirection: "column" }}>
+              <figure style={{ display: 'flex', flexDirection: 'column' }}>
                 <Link to={node.fields.slug} style={linkStyle}>
                   <Image
                     fixed={node.frontmatter.image_url.childImageSharp.fixed}
                     alt={node.frontmatter.title}
-                    style={{ alignSelf: "center", marginBottom: "0.5rem" }}
+                    style={{ alignSelf: 'center', marginBottom: '0.5rem' }}
                   />
                 </Link>
                 <Link to={node.fields.slug}>
-                  <h3 style={{ margin: `0 0 0.5rem 0` }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0' }}>
                     {node.frontmatter.title}
                   </h3>
                 </Link>
@@ -117,10 +117,10 @@ export default function Projects({ data }: PageProps<ProjectData>) {
                 </figcaption>
               </figure>
 
-              <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <div style={{ display: 'flex', justifyContent: 'space-around' }}>
                 <a
                   href={node.frontmatter.github_url}
-                  style={{ boxShadow: "none" }}
+                  style={{ boxShadow: 'none' }}
                 >
                   <GithubIcon />
                 </a>

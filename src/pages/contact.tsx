@@ -1,8 +1,8 @@
-import Layout, { defaultStyle } from "../components/layout"
-import { mediaQueries } from "../utils/media-queries"
-import SEO from "../components/seo"
-import { css } from "@emotion/core"
-import { graphql, PageProps } from "gatsby"
+import Layout, { defaultStyle } from '../components/layout'
+import { mediaQueries } from '../utils/media-queries'
+import SEO from '../components/seo'
+import { css } from '@emotion/react'
+import { graphql, PageProps } from 'gatsby'
 
 interface ContactPageData {
   site: {
@@ -31,7 +31,7 @@ const contactPageStyles = css`
   }
 `
 
-export default function Contact({ data }: PageProps<ContactPageData>) {
+export default function Contact ({ data }: PageProps<ContactPageData>) {
   const { title: siteTitle, email, github, linkedIn } = data.site.siteMetadata
 
   return (

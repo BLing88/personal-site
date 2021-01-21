@@ -1,12 +1,12 @@
 // Gatsby supports TypeScript natively!
-import { PageProps, Link, graphql } from "gatsby";
-import { css } from "@emotion/core"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import Bio from "../components/bio"
-import Layout, { defaultStyle } from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm, baseAccentColor } from "../utils/typography"
-import { mediaQueries } from "../utils/media-queries"
+import { PageProps, Link, graphql } from 'gatsby'
+import { css } from '@emotion/react'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+import Bio from '../components/bio'
+import Layout, { defaultStyle } from '../components/layout'
+import SEO from '../components/seo'
+import { rhythm, baseAccentColor } from '../utils/typography'
+import { mediaQueries } from '../utils/media-queries'
 
 type Data = {
   site: {
@@ -77,7 +77,7 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
               <header css={blogPageHeaderStyle}>
                 <h3>
                   <Link
-                    style={{ boxShadow: `none`, color: baseAccentColor }}
+                    style={{ boxShadow: 'none', color: baseAccentColor }}
                     to={node.fields.slug}
                   >
                     {title}
@@ -85,7 +85,7 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
                 </h3>
                 <small>
                   {node.frontmatter.date}
-                  {tags ? <> &bull; {tags.join(", ")}</> : null}
+                  {tags ? <> &bull; {tags.join(', ')}</> : null}
                 </small>
               </header>
               <section>

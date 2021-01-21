@@ -1,78 +1,84 @@
 module.exports = {
   siteMetadata: {
-    title: `Brandon Ling`,
+    title: "Brandon Ling",
     author: {
-      name: `Brandon Ling`,
-      summary: ` — physicist now developer.`,
+      name: "Brandon Ling",
+      summary: " — physicist now developer.",
     },
-    description: `Brandon’s personal site`,
-    siteUrl: `https://brandonling.dev/`,
-    email: `brandonling.dev@gmail.com`,
-    github: `Bling88`,
-    linkedIn: `www.linkedin.com/in/brandon-ling-`,
+    description: "Brandon’s personal site",
+    siteUrl: "https://brandonling.dev/",
+    email: "brandonling.dev@gmail.com",
+    github: "Bling88",
+    linkedIn: "www.linkedin.com/in/brandon-ling-",
   },
   plugins: [
-    `gatsby-plugin-emotion`,
+    "gatsby-plugin-emotion",
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: "gatsby-plugin-mdx",
       options: {
-        extensions: [`.md`, `.mdx`],
+        extensions: [".md", ".mdx"],
         gatsbyRemarkPlugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: "gatsby-remark-images",
             options: {
               maxWidth: 670,
               showCaptions: true,
             },
           },
           {
-            resolve: `gatsby-remark-responsive-iframe`,
+            resolve: "gatsby-remark-responsive-iframe",
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
+              wrapperStyle: "margin-bottom: 1.0725rem",
             },
           },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-          {
-            resolve: `gatsby-remark-mathjax-ssr`,
-            options: {},
-          },
+          "gatsby-remark-prismjs",
+          "gatsby-remark-copy-linked-files",
+          "gatsby-remark-smartypants",
+          // {
+          // resolve: 'gatsby-remark-katex',
+          //options: {
+          // strict: 'ignore'
+          //}
+          //},
         ],
-        remarkPlugins: [require(`remark-unwrap-images`)],
+        remarkPlugins: [
+          require("remark-unwrap-images"),
+          require("remark-math"),
+        ],
+        rehypePlugins: [require(`rehype-katex`)],
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/content/blog`,
-        name: `blog`,
-        ignore: process.env.NODE_ENV === `production` && [`**/drafts`],
+        name: "blog",
+        ignore: process.env.NODE_ENV === "production" ? ["**/drafts"] : [],
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/content/projects`,
-        name: `project`,
+        name: "project",
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/src/pages`,
-        name: `pages`,
+        name: "pages",
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/content/assets`,
-        name: `assets`,
+        name: "assets",
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
     //   options: {
@@ -92,11 +98,11 @@ module.exports = {
     //     icon: `content/assets/gatsby-icon.png`,
     //   },
     // },
-    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-react-helmet",
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: "gatsby-plugin-typography",
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        pathToConfigModule: "src/utils/typography",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

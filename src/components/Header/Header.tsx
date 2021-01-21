@@ -1,9 +1,8 @@
-import { useState, useLayoutEffect } from "react";
-import * as React from "react";
-import { Link } from "gatsby"
-import { css } from "@emotion/core"
-import { breakpoints, mediaQueries } from "../../utils/media-queries"
-import { linkColor, baseBackgroundColor, rhythm } from "../../utils/typography"
+import { useState, useLayoutEffect, ReactNode } from 'react'
+import { Link } from 'gatsby'
+import { css } from '@emotion/react'
+import { breakpoints, mediaQueries } from '../../utils/media-queries'
+import { linkColor, baseBackgroundColor, rhythm } from '../../utils/typography'
 
 const MenuStyle = css`
   position: relative;
@@ -66,7 +65,7 @@ const headerStyles = css`
 `
 
 interface ListLinkProps {
-  children: React.ReactNode
+  children: ReactNode
   to: string
 }
 
@@ -120,23 +119,25 @@ export const Header = ({ title }: HeaderProps) => {
       <h1 style={{ margin: 0 }}>
         <Link
           style={{
-            color: `inherit`,
+            color: 'inherit'
           }}
-          to={`/`}
+          to={'/'}
         >
           {title}
         </Link>
       </h1>
 
       <MenuIcon clickHandler={menuClickHandler} />
-      {!showMenuButton ? (
+      {!showMenuButton
+        ? (
         <ul css={linkListStyle}>
-          <ListLink to={"/"}>About</ListLink>
-          <ListLink to={"/projects/"}>Projects</ListLink>
-          <ListLink to={"/blog/"}>Blog</ListLink>
-          <ListLink to={"/contact/"}>Contact</ListLink>
+          <ListLink to={'/'}>About</ListLink>
+          <ListLink to={'/projects/'}>Projects</ListLink>
+          <ListLink to={'/blog/'}>Blog</ListLink>
+          <ListLink to={'/contact/'}>Contact</ListLink>
         </ul>
-      ) : null}
+          )
+        : null}
     </header>
   )
 }

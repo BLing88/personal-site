@@ -1,11 +1,11 @@
-import { graphql } from "gatsby"
-import { css } from "@emotion/core"
-import { defaultStyle } from "../components/layout"
-import { rhythm, linkColor } from "../utils/typography"
-import { mediaQueries } from "../utils/media-queries"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import { graphql } from 'gatsby'
+import { css } from '@emotion/react'
+import Layout, { defaultStyle } from '../components/layout'
+import { rhythm, linkColor } from '../utils/typography'
+import { mediaQueries } from '../utils/media-queries'
+
+import SEO from '../components/seo'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 interface ProjectProps {
   data: {

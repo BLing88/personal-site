@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import { Header } from "./Header"
-import GithubIcon from "./GithubIcon"
-import EmailIcon from "./EmailIcon"
-import { rhythm } from "../utils/typography"
-import { css, SerializedStyles } from "@emotion/core"
-import { mediaQueries } from "../utils/media-queries"
+import { ReactNode } from 'react'
+import { Header } from './Header'
+import GithubIcon from './GithubIcon'
+import EmailIcon from './EmailIcon'
+import { rhythm } from '../utils/typography'
+import { css, SerializedStyles } from '@emotion/react'
+import { mediaQueries } from '../utils/media-queries'
 
 const objectIsEmptyOrUndefined = (obj: object | undefined) => {
   return obj === undefined || Object.keys(obj).length === 0
@@ -41,15 +41,15 @@ const Layout = ({ title, children, style }: LayoutProps) => {
       <footer>
         <a href="https://github.com/BLing88">
           <GithubIcon />
-        </a>{" "}
-        &bull;{" "}
+        </a>{' '}
+        &bull;{' '}
         <a href="mailto:brandonling.dev@gmail.com">
           <EmailIcon />
-        </a>{" "}
-        &bull;{" "}
+        </a>{' '}
+        &bull;{' '}
         <small style={{ opacity: 0.75 }}>
           © {new Date().getFullYear()} Brandon Ling, built with
-          {` `}
+          {' '}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </small>
       </footer>

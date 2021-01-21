@@ -1,10 +1,10 @@
-import { PageProps, graphql } from "gatsby"
-import { css } from "@emotion/core"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
-import { mediaQueries } from "../utils/media-queries"
-import Img from "gatsby-image"
+import { PageProps, graphql } from 'gatsby'
+import { css } from '@emotion/react'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import { rhythm } from '../utils/typography'
+import { mediaQueries } from '../utils/media-queries'
+import Img from 'gatsby-image'
 
 type Data = {
   site: {
@@ -118,13 +118,13 @@ const HomePage = ({ data }: PageProps<Data>) => {
               }
             `}
           >
-            I’m a former{" "}
+            I’m a former{' '}
             <span>
               <strong>
                 <em>physicist</em>
               </strong>
-            </span>{" "}
-            turned self&ndash;taught{" "}
+            </span>{' '}
+            turned self&ndash;taught{' '}
             <span>
               <strong>
                 <em>developer</em>
@@ -133,7 +133,7 @@ const HomePage = ({ data }: PageProps<Data>) => {
             .
           </p>
           <img
-            src={require("../../content/assets/life-feynman-diagram.png")}
+            src={require('../../content/assets/life-feynman-diagram.png')}
             alt="From physicist to developer as a Feynman diagram"
             title="From physicist to developer as a Feynman diagram"
           />
@@ -159,11 +159,11 @@ const HomePage = ({ data }: PageProps<Data>) => {
             alt="Brandon teaching math and physics"
             fluid={teachingImg.childImageSharp.fluid}
             style={{
-              gridArea: "overlap",
-              minWidth: `100%`,
+              gridArea: 'overlap',
+              minWidth: '100%'
             }}
             imgStyle={{
-              opacity: 0.55,
+              opacity: 0.55
             }}
           />
 
@@ -204,7 +204,7 @@ const HomePage = ({ data }: PageProps<Data>) => {
             title="code screenshot"
             alt="code screenshot"
             style={{
-              gridArea: "image",
+              gridArea: 'image'
             }}
           />
           <p

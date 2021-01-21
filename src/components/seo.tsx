@@ -5,8 +5,8 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import { Helmet } from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby"
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
 type MetaObject =
   | { name: string; content: any; property?: undefined }
@@ -19,7 +19,7 @@ interface SEOProps {
   title: string
 }
 
-const SEO = ({ description, lang = "en", meta, title }: SEOProps) => {
+const SEO = ({ description, lang = 'en', meta, title }: SEOProps) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -38,27 +38,27 @@ const SEO = ({ description, lang = "en", meta, title }: SEOProps) => {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
-          name: `description`,
-          content: metaDescription,
+          name: 'description',
+          content: metaDescription
         },
         {
-          property: `og:title`,
-          content: title,
+          property: 'og:title',
+          content: title
         },
         {
-          property: `og:description`,
-          content: metaDescription,
+          property: 'og:description',
+          content: metaDescription
         },
         {
-          property: `og:type`,
-          content: `website`,
-        },
+          property: 'og:type',
+          content: 'website'
+        }
       ].concat(meta || [])}
     />
   )

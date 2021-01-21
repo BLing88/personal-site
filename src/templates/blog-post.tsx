@@ -1,11 +1,11 @@
-import { Link, graphql } from "gatsby"
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
-import { css } from "@emotion/core"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-require(`gatsby-remark-mathjax-ssr/mathjax.css`)
+import { Link, graphql } from 'gatsby'
+import Bio from '../components/bio'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import { rhythm, scale } from '../utils/typography'
+import { css } from '@emotion/react'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+require('katex/dist/katex.min.css')
 
 interface BlogPostProps {
   data: {
@@ -45,12 +45,12 @@ const BlogPostTemplate = ({ data, pageContext }: BlogPostProps) => {
           <p
             style={{
               ...scale(-1 / 5),
-              display: `block`,
-              marginBottom: rhythm(1),
+              display: 'block',
+              marginBottom: rhythm(1)
             }}
           >
             {post.frontmatter.date}
-            {tags ? <> &bull; {tags.join(", ")}</> : null}
+            {tags ? <> &bull; {tags.join(', ')}</> : null}
           </p>
         </header>
         <MDXRenderer>{post.body}</MDXRenderer>
@@ -63,12 +63,12 @@ const BlogPostTemplate = ({ data, pageContext }: BlogPostProps) => {
       <nav>
         <ul
           style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            listStyle: 'none',
             padding: 0,
-            marginLeft: 0,
+            marginLeft: 0
           }}
         >
           <li>
