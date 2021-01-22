@@ -7,5 +7,10 @@ tags:
   - computer science
 ---
 import Dataviz from './src/App.tsx'
+import { datasets } from './src/data-handling.ts'
+import { MedianEnqueuePlot } from './src/MedianEnqueuePlot.tsx'
+import { MedianDequeuePlot } from './src/MedianDequeuePlot.tsx'
 
-<Dataviz />
+<Dataviz datasets={datasets}/>
+<MedianEnqueuePlot datasets={datasets} height={400} width={600} x={65} y={0} />
+<MedianDequeuePlot datasets={datasets} height={400} width={600} x={65} y={0} />
