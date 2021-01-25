@@ -167,7 +167,7 @@ type Action =
       implementationType: DatasetType
     }
 const dispatchFunction = (prevState: AppState, action: Action) => {
-  const getDatasets = (
+  const getDataToShow = (
     shouldFilter: boolean,
     size: Label,
     type: DatasetType,
@@ -206,7 +206,7 @@ const dispatchFunction = (prevState: AppState, action: Action) => {
       return {
         ...prevState,
         filter: !prevState.filter,
-        dataToShow: getDatasets(
+        dataToShow: getDataToShow(
           !prevState.filter,
           prevState.size,
           prevState.type,
@@ -218,7 +218,7 @@ const dispatchFunction = (prevState: AppState, action: Action) => {
         return {
           ...prevState,
           size: action.size,
-          dataToShow: getDatasets(
+          dataToShow: getDataToShow(
             prevState.filter,
             action.size,
             prevState.type,
@@ -258,7 +258,7 @@ const dispatchFunction = (prevState: AppState, action: Action) => {
         return {
           ...prevState,
           whichDataToShow: updatedWhichDataToShow,
-          dataToShow: getDatasets(
+          dataToShow: getDataToShow(
             prevState.filter,
             prevState.size,
             prevState.type,
@@ -270,7 +270,7 @@ const dispatchFunction = (prevState: AppState, action: Action) => {
       return {
         ...prevState,
         type: action.implementationType,
-        dataToShow: getDatasets(
+        dataToShow: getDataToShow(
           prevState.filter,
           prevState.size,
           action.implementationType,
