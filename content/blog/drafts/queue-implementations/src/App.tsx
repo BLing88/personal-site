@@ -319,18 +319,22 @@ function App({
   const plotWidth = 670
   const plotHeight = 500
 
-  const minX = min(state.dataToShow, (ds: [number, number][]) =>
-    min(ds, (p: [number, number]) => p[0])
-  )
-  const maxX = max(state.dataToShow, (ds: [number, number][]) =>
-    max(ds, (p: [number, number]) => p[0])
-  )
-  const minY = min(state.dataToShow, (ds: [number, number][]) =>
-    min(ds, (p: [number, number]) => p[1])
-  )
-  const maxY = max(state.dataToShow, (ds: [number, number][]) =>
-    max(ds, (p: [number, number]) => p[1])
-  )
+  const minX = min(
+    state.dataToShow!,
+    (ds: [number, number][]) => min(ds, (p: [number, number]) => p[0])!
+  )!
+  const maxX = max(
+    state.dataToShow!,
+    (ds: [number, number][]) => max(ds, (p: [number, number]) => p[0])!
+  )!
+  const minY = min(
+    state.dataToShow,
+    (ds: [number, number][]) => min(ds, (p: [number, number]) => p[1])!
+  )!
+  const maxY = max(
+    state.dataToShow,
+    (ds: [number, number][]) => max(ds, (p: [number, number]) => p[1])!
+  )!
 
   const xScale = scaleLinear()
     .domain([minX, maxX])
