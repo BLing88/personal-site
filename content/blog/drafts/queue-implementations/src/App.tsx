@@ -360,7 +360,7 @@ function App({
         <text
           x={(plotWidth - svgMargins.left - svgMargins.right) / 2 - 50}
           y={svgMargins.top - 10}
-          style={{ textTransform: "capitalize" }}
+          style={{ textTransform: "capitalize", fill: "currentcolor" }}
         >{`${state.type.slice(0, state.type.length - 5)} times with ${
           state.size
         } elements`}</text>

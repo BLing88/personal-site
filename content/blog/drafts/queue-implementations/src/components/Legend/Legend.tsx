@@ -1,8 +1,8 @@
 interface LegendEntryProps {
-  label: string;
-  color: string;
-  x: number;
-  y: number;
+  label: string
+  color: string
+  x: number
+  y: number
 }
 
 const LegendEntry = ({ label, color, x, y }: LegendEntryProps) => {
@@ -12,26 +12,27 @@ const LegendEntry = ({ label, color, x, y }: LegendEntryProps) => {
       <text
         x={x + 20}
         y={y}
-        dy={'0.5em'}
-        alignmentBaseline={'middle'}
-        textAnchor={'start'}
+        dy={"0.5em"}
+        alignmentBaseline={"middle"}
+        textAnchor={"start"}
+        fill="currentcolor"
       >
-        {label}{' '}
+        {label}{" "}
       </text>
     </g>
   )
 }
 
 interface LegendProps {
-  colors: string[];
-  labels: string[];
-  x: number;
-  y: number;
+  colors: string[]
+  labels: string[]
+  x: number
+  y: number
 }
 
 const Legend = ({ labels, colors, x, y }: LegendProps) => {
   return (
-    <g className={'legend'} transform={`translate(${x},${y})`}>
+    <g className={"legend"} transform={`translate(${x},${y})`}>
       {labels.map((label, index) => (
         <LegendEntry
           key={label}
