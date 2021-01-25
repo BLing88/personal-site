@@ -25,10 +25,10 @@ function labelPos({
     case "Right":
       return { x: 20, y: 0 }
     case "Bottom":
-      return { x: scale.range()[1], y: 25 }
+      return { x: scale.range()[1], y: 35 }
     case "Left":
     default:
-      return { x: -20, y: scale.range()[1] - 10 }
+      return { x: -5, y: scale.range()[1] - 15 }
   }
 }
 
@@ -41,13 +41,16 @@ const Axis = ({ x, y, scale, axisType, label }: AxisProps) => {
   })
 
   return (
-    <g ref={gRef} transform={`translate(${x}, ${y})`}>
+    <g
+      ref={gRef}
+      transform={`translate(${x}, ${y})`}
+      style={{ fontSize: "14px" }}
+    >
       <text
         {...labelPos({ axisType, scale })}
         style={{
           fill: "currentcolor",
           fontFamily: "sans-serif",
-          fontSize: "10px",
         }}
       >
         {label}
