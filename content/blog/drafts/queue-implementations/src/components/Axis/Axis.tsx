@@ -1,11 +1,11 @@
-import { ScaleLinear } from "d3"
+import { ScaleBand, ScaleLinear } from "d3"
 import { useRef, useEffect, MutableRefObject } from "react"
 import * as d3 from "d3"
 type AxisType = "Top" | "Bottom" | "Left" | "Right"
 interface AxisProps {
   x: number
   y: number
-  scale: ScaleLinear<number, number, never>
+  scale: ScaleLinear<number, number, never> | ScaleBand<string>
   axisType: AxisType
   label: string
 }
@@ -17,7 +17,7 @@ function labelPos({
   scale,
 }: {
   axisType: AxisType
-  scale: ScaleLinear<number, number, never>
+  scale: ScaleLinear<number, number, never> | ScaleBand<string>
 }) {
   switch (axisType) {
     case "Top":
@@ -34,6 +34,7 @@ function labelPos({
 
 const Axis = ({ x, y, scale, axisType, label }: AxisProps) => {
   const gRef = useRef<SVGGElement>(null) as MutableRefObject<SVGGElement>
+  // @ts-ignore
   const axis = d3[`axis${axisType}` as D3AxisType](scale)
   axis.ticks(10, "~s")
   useEffect(() => {

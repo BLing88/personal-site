@@ -5,6 +5,7 @@ import { Scatterplot } from "./components/Scatterplot"
 import { Controls } from "./components/Controls"
 import { ControlSet } from "./components/ControlSet"
 import { Histogram } from "./components/Histogram"
+import { Boxplot } from "./components/Boxplot"
 import { colors } from "./colors"
 import { Legend } from "./components/Legend"
 interface Data {
@@ -43,8 +44,7 @@ function outlierFilter(
   const Q3 = quantile(dataset, 0.75, accessor)
   if (median && Q1 && Q3) {
     return (d: [number, number]) =>
-      median - 3 * (Q3 - Q1) < accessor(d) &&
-      accessor(d) < median + 3 * (Q3 - Q1)
+      Q1 - 1.5 * (Q3 - Q1) < accessor(d) && accessor(d) < Q3 + 1.5 * (Q3 - Q1)
   } else {
     return () => true
   }
@@ -57,7 +57,7 @@ const svgMargins = {
   bottom: 40,
 }
 type DatasetType = "dequeueTimes" | "enqueueTimes"
-type Plot = "Scatterplot" | "Histogram"
+type Plot = "Scatterplot" | "Histogram" | "Boxplot"
 interface Dataset {
   raw: Record<"enqueueTimes" | "dequeueTimes", [number, number][]>
   filtered: Record<"enqueueTimes" | "dequeueTimes", [number, number][]>
@@ -401,6 +401,18 @@ function App({
             colors={legendColors}
           />
         ) : null}
+        {state.plot === "Boxplot" ? (
+          <Boxplot
+            datasets={state.dataToShow}
+            yScale={yScale}
+            x={svgMargins.left}
+            y={svgMargins.top}
+            width={plotWidth - svgMargins.left - svgMargins.right}
+            height={plotHeight - svgMargins.top - svgMargins.bottom}
+            colors={legendColors}
+            labels={legendLabels}
+          />
+        ) : null}
       </svg>
       <Controls>
         <input
@@ -474,10 +486,8 @@ function App({
           onClick={() => dispatch({ type: SHOW_OUTLIERS })}
         />
         <ControlSet
-          labels={["Scatterplot", "Histogram"]}
-          onClick={(plot: "Scatterplot" | "Histogram") =>
-            dispatch({ type: CHANGE_PLOT, plot })
-          }
+          labels={["Scatterplot", "Histogram", "Boxplot"]}
+          onClick={(plot: Plot) => dispatch({ type: CHANGE_PLOT, plot })}
         />
       </Controls>
     </div>
