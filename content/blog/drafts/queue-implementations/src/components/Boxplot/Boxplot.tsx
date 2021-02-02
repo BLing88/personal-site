@@ -26,9 +26,9 @@ const Boxplot = ({
     const upperFence = thirdQuartile + 1.5 * IQR
     const lowerFence = firstQuartile - 1.5 * IQR
     const [lowerWhisker, upperWhisker, outliers] = ds.reduce(
-      ([lowerWhisker, upperWhisker, outliers], [_, d]) => {
+      ([lowerWhisker, upperWhisker, outliers], [i, d]) => {
         if (d > upperFence || d < lowerFence) {
-          outliers.push(d)
+          outliers.push([i, d])
         } else if (d > thirdQuartile) {
           upperWhisker = Math.max(d, upperWhisker)
         } else if (d < firstQuartile) {
@@ -36,7 +36,7 @@ const Boxplot = ({
         }
         return [lowerWhisker, upperWhisker, outliers]
       },
-      [Infinity, -Infinity, [] as number[]]
+      [Infinity, -Infinity, [] as [number, number][]]
     )
     return {
       median: d3Median(ds, d => d[1])!,
@@ -68,7 +68,9 @@ const Boxplot = ({
       {dataStatistics.map((ds, i) => {
         const centerXPos = xScale(labels[i])! + bandwidth / 2
         return (
-          <Fragment key={ds.median}>
+          <Fragment
+            key={`${ds.median}${ds.firstQuartile}${ds.thirdQuartile}${ds.outliers}`}
+          >
             <rect
               fill={colors[i]}
               stroke={"currentcolor"}
@@ -113,13 +115,13 @@ const Boxplot = ({
               y1={yScale(ds.lowerWhisker)}
               y2={yScale(ds.lowerWhisker)}
             />
-            {ds.outliers.map(d => (
+            {ds.outliers.map(([index, d]) => (
               <circle
                 cx={centerXPos}
                 cy={yScale(d)}
                 r={3}
                 fill={colors[i]}
-                key={yScale(d)}
+                key={`${centerXPos}${index}${d}`}
               />
             ))}
           </Fragment>
