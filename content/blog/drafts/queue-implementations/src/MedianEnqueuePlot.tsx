@@ -26,7 +26,7 @@ const MedianEnqueuePlot = ({
     .nice()
     .range([0, width - 140 - x])
   const yScale = scaleLinear()
-    .domain([2, 3])
+    .domain([2, 3.5])
     .range([height - 40, 40])
   return (
     <svg width={width} height={height}>
