@@ -17,6 +17,10 @@ import object100000 from "./data/object-queue-100000.json"
 import object1000000 from "./data/object-queue-1000000.json"
 import object10000000 from "./data/object-queue-10000000.json"
 
+import arrayTimes from "./array-enqueue-dequeue-times.json"
+import linkedListTimes from "./linked-list-enqueue-dequeue-times.json"
+import objectTimes from "./object-enqueue-dequeue-times.json"
+
 export const datasets = [
   array100,
   array1000,
@@ -37,3 +41,14 @@ export const datasets = [
   object1000000,
   object10000000,
 ]
+
+export const sameQueueEnqueueTimes = [
+  arrayTimes,
+  linkedListTimes,
+  objectTimes,
+].map(ds => ds.map(d => [d.index, d.enqueueTime]))
+export const sameQueueDequeueTimes = [
+  arrayTimes,
+  linkedListTimes,
+  objectTimes,
+].map(ds => ds.map(d => [d.index, d.dequeueTime]))
