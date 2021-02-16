@@ -1,23 +1,23 @@
-import { ScaleLinear, bin, scaleLinear, max } from 'd3'
-import { Axis } from '../Axis'
+import { ScaleLinear, bin, scaleLinear, max } from "d3"
+import { Axis } from "../Axis"
 interface HistogramProps {
-  accessor: (d: number, i?: number, data?: ArrayLike<number>) => number;
-  x: number;
-  y: number;
-  height: number;
-  xScale: ScaleLinear<number, number, never>;
-  datasets: number[][];
-  axisLabel: string;
-  colors: string[];
+  accessor: (d: number, i?: number, data?: ArrayLike<number>) => number
+  x: number
+  y: number
+  height: number
+  xScale: ScaleLinear<number, number, never>
+  datasets: number[][]
+  axisLabel: string
+  colors: string[]
 }
 
 interface HistogramBarProps {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  color: string;
-  label: string;
+  x: number
+  y: number
+  width: number
+  height: number
+  color: string
+  label: string
 }
 
 const HistogramBar = ({
@@ -26,14 +26,16 @@ const HistogramBar = ({
   width,
   height,
   color,
-  label
+  label,
 }: HistogramBarProps) => {
   return (
     <g transform={`translate(${x},${y})`}>
       <rect width={width} height={height} fill={color} stroke="grey" />
-      <text textAnchor="end" x={width - 5} y={height / 2 + 3}>
-        {label}
-      </text>
+      {label !== "" ? (
+        <text textAnchor="end" x={width - 5} y={height / 2 + 3}>
+          {label}
+        </text>
+      ) : null}
     </g>
   )
 }
@@ -46,15 +48,13 @@ const Histogram = ({
   datasets,
   accessor,
   axisLabel,
-  colors
+  colors,
 }: HistogramProps) => {
   const histogram = bin()
     .value(accessor)
     .domain(xScale.domain() as [number, number])
   const barsets = datasets.map(histogram)
-  const maxCount = max(
-    barsets.map((barset) => max(barset, (bin) => bin.length)!)
-  )
+  const maxCount = max(barsets.map(barset => max(barset, bin => bin.length)!))
   const countScale = scaleLinear()
     .domain([0, maxCount!])
     .nice()
@@ -66,18 +66,18 @@ const Histogram = ({
         x={xScale.range()[0]}
         y={0}
         scale={scaleLinear().domain([0, maxCount!]).nice().range([height, 0])}
-        axisType={'Left'}
-        label={'counts'}
+        axisType={"Left"}
+        label={"counts"}
       />
       <Axis
         x={0}
         y={countScale.range()[1]}
         scale={xScale}
-        axisType={'Bottom'}
+        axisType={"Bottom"}
         label={axisLabel}
       />
       {barsets.map((barset, j) => {
-        return barset.map((bar) => (
+        return barset.map(bar => (
           <HistogramBar
             x={xScale(bar.x0!)}
             y={height - countScale(bar.length)}
@@ -85,7 +85,7 @@ const Histogram = ({
             width={xScale(bar.x1!) - xScale(bar.x0!)}
             height={countScale(bar.length)}
             color={colors[j]}
-            label={`${bar.length}`}
+            label={""}
           />
         ))
       })}
