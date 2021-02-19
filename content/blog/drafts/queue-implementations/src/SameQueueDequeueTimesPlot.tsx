@@ -26,7 +26,7 @@ const SameQueueDequeueTimesPlot = ({
     .nice()
     .range([height - 40, 40])
   return (
-    <svg width={width} height={2 * height}>
+    <svg viewBox={`0 0 ${width} ${2 * height}`}>
       <Scatterplot
         x={x}
         y={y}

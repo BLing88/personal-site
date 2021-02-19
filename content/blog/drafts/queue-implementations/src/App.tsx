@@ -360,7 +360,11 @@ function App({
   }
   return (
     <div>
-      <svg width={plotWidth} height={plotHeight}>
+      <svg
+        //width={plotWidth}
+        //height={plotHeight}
+        viewBox={`0 0 ${plotWidth} ${plotHeight}`}
+      >
         <text
           x={(plotWidth - svgMargins.left - svgMargins.right) / 2 - 50}
           y={svgMargins.top - 10}

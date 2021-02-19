@@ -29,7 +29,7 @@ const MedianEnqueuePlot = ({
     .domain([2, 3.5])
     .range([height - 40, 40])
   return (
-    <svg width={width} height={height}>
+    <svg viewBox={`0 0 ${width} ${height}`}>
       <Scatterplot
         x={x}
         y={y}
