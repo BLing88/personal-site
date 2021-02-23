@@ -1,13 +1,28 @@
 interface ControlButtonProps<T extends string> {
-  label: T;
-  onClick: ((s: T) => void) | (() => void);
+  label: T
+  onChange: ((s: T) => void) | (() => void)
+  name: string
+  selection: string
 }
 
 const ControlButton = <T extends string>({
   label,
-  onClick
+  onChange,
+  name,
+  selection,
 }: ControlButtonProps<T>) => {
-  return <button onClick={() => onClick(label)}>{label}</button>
+  return (
+    <div>
+      <input
+        name={name}
+        type="radio"
+        id={label}
+        onChange={() => onChange(label)}
+        checked={selection === label}
+      />
+      <label htmlFor={label}>{label} </label>
+    </div>
+  )
 }
 
 export { ControlButton }

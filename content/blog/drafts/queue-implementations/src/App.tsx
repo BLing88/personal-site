@@ -8,6 +8,7 @@ import { Histogram } from "./components/Histogram"
 import { Boxplot } from "./components/Boxplot"
 import { colors } from "./colors"
 import { Legend } from "./components/Legend"
+import { Checkbox } from "./components/Checkbox"
 interface Data {
   index: number
   enqueueTime: number
@@ -360,11 +361,7 @@ function App({
   }
   return (
     <div>
-      <svg
-        //width={plotWidth}
-        //height={plotHeight}
-        viewBox={`0 0 ${plotWidth} ${plotHeight}`}
-      >
+      <svg viewBox={`0 0 ${plotWidth} ${plotHeight}`}>
         <text
           x={(plotWidth - svgMargins.left - svgMargins.right) / 2 - 50}
           y={svgMargins.top - 10}
@@ -410,89 +407,95 @@ function App({
             datasets={state.dataToShow}
             yScale={yScale}
             x={svgMargins.left}
-            y={svgMargins.top}
             width={plotWidth - svgMargins.left - svgMargins.right}
-            height={plotHeight - svgMargins.top - svgMargins.bottom}
             colors={legendColors}
             labels={legendLabels}
           />
         ) : null}
       </svg>
       <Controls>
-        <input
-          type="checkbox"
-          id="array"
-          name="array"
-          value="array"
-          onChange={() => {
-            dispatch({ type: TOGGLE_DATA_TO_SHOW, whichData: "array" })
-          }}
-          checked={state.whichDataToShow.array}
-        />
-        <label htmlFor="array">array</label>
-        <input
-          type="checkbox"
-          id="linked list"
-          name="linked list"
-          value="linked list"
-          onChange={() => {
-            dispatch({ type: TOGGLE_DATA_TO_SHOW, whichData: "linkedList" })
-          }}
-          checked={state.whichDataToShow.linkedList}
-        />
-        <label htmlFor="linked list">linked list</label>
-        <input
-          type="checkbox"
-          id="object"
-          name="object"
-          value="object"
-          onChange={() => {
-            dispatch({ type: TOGGLE_DATA_TO_SHOW, whichData: "object" })
-          }}
-          checked={state.whichDataToShow.object}
-        />
-        <label htmlFor="object">object</label>
-        <input
-          type="checkbox"
-          id="enqueueTimes"
-          name="enqueueTimes"
-          value="enqueueTimes"
-          onChange={() =>
-            dispatch({
-              type: TOGGLE_IMPLEMENTATION_TYPE,
-              implementationType: "enqueueTimes",
-            })
-          }
-          checked={state.type === "enqueueTimes"}
-        />
-        <label htmlFor="enqueueTimes">enqueue</label>
-        <input
-          type="checkbox"
-          id="dequeueTimes"
-          name="dequeueTimes"
-          value="dequeueTimes"
-          onChange={() =>
-            dispatch({
-              type: TOGGLE_IMPLEMENTATION_TYPE,
-              implementationType: "dequeueTimes",
-            })
-          }
-          checked={state.type === "dequeueTimes"}
-        />
-        <label htmlFor="dequeueTimes">dequeue</label>
+        <fieldset>
+          <legend>Implementation</legend>
+          <Checkbox
+            label={"array"}
+            onChange={() => {
+              dispatch({ type: TOGGLE_DATA_TO_SHOW, whichData: "array" })
+            }}
+            checked={state.whichDataToShow.array}
+          />
+          <Checkbox
+            label="linked list"
+            onChange={() => {
+              dispatch({ type: TOGGLE_DATA_TO_SHOW, whichData: "linkedList" })
+            }}
+            checked={state.whichDataToShow.linkedList}
+          />
+          <Checkbox
+            label="object"
+            onChange={() => {
+              dispatch({ type: TOGGLE_DATA_TO_SHOW, whichData: "object" })
+            }}
+            checked={state.whichDataToShow.object}
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Which times</legend>
+          <label htmlFor="enqueueTimes">
+            <input
+              type="radio"
+              id="enqueueTimes"
+              name="enqueueTimes"
+              value="enqueueTimes"
+              onChange={() =>
+                dispatch({
+                  type: TOGGLE_IMPLEMENTATION_TYPE,
+                  implementationType: "enqueueTimes",
+                })
+              }
+              checked={state.type === "enqueueTimes"}
+            />
+            <span className="label">enqueue</span>
+          </label>
+          <label htmlFor="dequeueTimes">
+            <input
+              type="radio"
+              id="dequeueTimes"
+              name="dequeueTimes"
+              value="dequeueTimes"
+              onChange={() =>
+                dispatch({
+                  type: TOGGLE_IMPLEMENTATION_TYPE,
+                  implementationType: "dequeueTimes",
+                })
+              }
+              checked={state.type === "dequeueTimes"}
+            />
+            <span className="label">dequeue</span>
+          </label>
+        </fieldset>
 
         <ControlSet
           labels={labels}
-          onClick={(label: Label) => dispatch({ type: SIZE, size: label })}
+          onChange={(label: Label) => dispatch({ type: SIZE, size: label })}
+          name={SIZE}
+          selection={state.size}
+          legendCaption={"Queue size"}
         />
-        <ControlSet
-          labels={["Show outliers"]}
-          onClick={() => dispatch({ type: SHOW_OUTLIERS })}
-        />
+
         <ControlSet
           labels={["Scatterplot", "Histogram", "Boxplot"]}
-          onClick={(plot: Plot) => dispatch({ type: CHANGE_PLOT, plot })}
+          onChange={(plot: Plot) => dispatch({ type: CHANGE_PLOT, plot })}
+          name={CHANGE_PLOT}
+          selection={state.plot}
+          legendCaption={"Plot"}
         />
+        <span style={{ marginTop: "0.1em" }}>
+          <Checkbox
+            label="show outliers"
+            onChange={() => dispatch({ type: SHOW_OUTLIERS })}
+            checked={!state.filter}
+          />
+        </span>
       </Controls>
     </div>
   )

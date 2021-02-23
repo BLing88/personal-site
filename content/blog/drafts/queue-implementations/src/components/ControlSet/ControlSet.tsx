@@ -1,19 +1,32 @@
-import { ControlButton } from '../ControlButton'
+import { ControlButton } from "../ControlButton"
 
 interface ControlSetProps<T extends string> {
-  labels: T[];
-  onClick: ((s: T) => void) | (() => void);
+  labels: T[]
+  onChange: ((s: T) => void) | (() => void)
+  name: string
+  selection: string
+  legendCaption: string
 }
 const ControlSet = <U extends string>({
   labels,
-  onClick
+  onChange,
+  name,
+  selection,
+  legendCaption,
 }: ControlSetProps<U>) => {
   return (
-    <div>
-      {labels.map((label) => (
-        <ControlButton onClick={onClick} label={label} key={label} />
+    <fieldset>
+      <legend>{legendCaption}</legend>
+      {labels.map(label => (
+        <ControlButton
+          name={name}
+          onChange={onChange}
+          label={label}
+          key={label}
+          selection={selection}
+        />
       ))}
-    </div>
+    </fieldset>
   )
 }
 
