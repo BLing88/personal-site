@@ -1,6 +1,6 @@
 ---
 title: Computational Physics
-date: 2020-06-02
+date: 2020-06-01
 github_url: "https://github.com/BLing88/computational-physics"
 image_url: "./bulirsch-stoer.png"
 description: From integrals and derivatives to PDEs and Monte Carlo simulations, in Python
