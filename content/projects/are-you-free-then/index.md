@@ -6,8 +6,7 @@ description: An app to help coordinate scheduling events among friends
 ---
 
 > Tldr: This project was inspired by the site [When2meet][when2meet], which a few of my friends use for scheduling things like practices. 
-> My project, _Are You Free Then_, is a full [Ruby on Rails][rails] app with some React added in a few places. It’s still a work in progress, but the main 
-> functionality is there. You can check it out [here][are-you-free-then], and use email: guest-user@email.com and password: password to log in without having to create your own account.
+> My project, _Are You Free Then_, is a full [Ruby on Rails][rails] app with some React added in a few places. It’s still very much a **work in progress**, but you can check it out[^1] [here][are-you-free-then], and use email: guest-user@email.com and password: password to log in without having to create your own account.
 
 The original When2meet (which is still around) helps people figure out the best time for a group of people to meet. 
 You select some dates and get a link for the event, and then people can enter the times they have free for that event by going to that link.
@@ -26,11 +25,14 @@ To handle the second point above, users create accounts so that they can enter a
 
 ![Showing participants’s free times for a given date for an event](./event-times.png "Showing participants’s free times for a given date for an event")
 
-There’s still a bunch of work to do, including some better styling and handling when event times are decided upon.
-Also for some reason I haven’t figured out yet, the rectangular selection on the calendar doesn’t seem to be working correctly on Android Chrome (the relevant pointer events don’t seem to be firing). It works fine on desktop and Firefox. You can still tap each individual date though.
+There’s still a bunch of work to do, including some better styling, improving accessibility, and handling when event times are decided upon.
+
+
 
 Other potential features I’ve thought about include having friend groups and sending event invites in app so that you don’t have to copy and paste event codes.
 
 [are-you-free-then]: https://aqueous-river-04352.herokuapp.com/
 [rails]: https://rubyonrails.org/
 [when2meet]: https://www.when2meet.com/
+
+[^1]: For some reason, the rectangular selection on the calendar doesn’t seem to be working correctly on mobile Chrome or Safari (the relevant pointer events don’t seem to be firing). It works fine on desktop versions and both mobile and desktop Firefox. You can still tap each individual date though.
