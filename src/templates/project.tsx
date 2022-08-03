@@ -1,11 +1,11 @@
-import { graphql } from 'gatsby'
-import { css } from '@emotion/react'
-import Layout, { defaultStyle } from '../components/layout'
-import { rhythm, linkColor } from '../utils/typography'
-import { mediaQueries } from '../utils/media-queries'
+import { graphql } from "gatsby"
+import { css } from "@emotion/react"
+import Layout, { defaultStyle } from "../components/layout"
+import { rhythm, linkColor } from "../utils/typography"
+import { mediaQueries } from "../utils/media-queries"
 
-import SEO from '../components/seo'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
+import SEO from "../components/seo"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 interface ProjectProps {
   data: {
@@ -31,6 +31,13 @@ const projectPageStyle = css`
   main a {
     text-decoration: none;
     color: ${linkColor};
+  }
+
+  main figure {
+    width: 450px;
+    height: 801px;
+    margin-left: auto;
+    margin-right: auto;
   }
 `
 const Project = ({ data }: ProjectProps) => {
