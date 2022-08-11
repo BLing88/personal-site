@@ -19,6 +19,7 @@ type ProjectData = {
         frontmatter: {
           title: string
           github_url: string
+          project_url: string
           image_url: {
             childImageSharp: {
               fixed: FixedObject | FixedObject[]
@@ -124,7 +125,9 @@ export default function Projects({ data }: PageProps<ProjectData>) {
                 >
                   <GithubIcon />
                 </a>
-                Check it out
+                <a href={`${node.frontmatter.project_url ?? ""}`}>
+                  Check it out
+                </a>
               </div>
             </article>
           )
@@ -154,6 +157,7 @@ export const projectsPageQuery = graphql`
           frontmatter {
             title
             github_url
+            project_url
             image_url {
               childImageSharp {
                 fixed(width: 167, height: 300) {

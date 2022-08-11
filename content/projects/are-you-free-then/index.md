@@ -3,6 +3,7 @@ title: Are You Free Then
 date: 2021-06-14
 image_url: './calendar.png'
 github_url: "https://github.com/BLing88/are-you-free-then" 
+project_url: "https://aqueous-river-04352.herokuapp.com/"
 description: An app to help coordinate scheduling events among friends
 ---
 

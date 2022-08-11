@@ -2,6 +2,7 @@
 title: Recipe Developer
 date: 2020-06-02
 github_url: "https://github.com/BLing88/recipe-developer"
+project_url: "https://recipe-developer.vercel.app"
 image_url: "./recipe-developer.jpg"
 description: Easily create your own recipes and experiment with ones you like already.
 ---
